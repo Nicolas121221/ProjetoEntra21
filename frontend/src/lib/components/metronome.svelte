@@ -44,7 +44,7 @@
 </script>
 
 <section
-	class="w-2xl m-2 flex h-[98.5%] grow-0 flex-col justify-between rounded border border-blue-500/20 bg-zinc-950 p-4"
+	class="w-2xl m-2 flex h-[98.5%] grow-0 flex-col justify-between border border-blue-500/20 bg-zinc-950/80 p-4"
 >
 	<div class="flex">
 		<h3
