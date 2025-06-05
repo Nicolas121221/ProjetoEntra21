@@ -1,5 +1,5 @@
 <script>
-	import Background from '$lib/components/background.svelte';
+	import Background from '$lib/components/Background.svelte';
 	let src = [
 		'https://www.festivalpro.com/articles/1568.png',
 		'https://guitarglissando.com/wp-content/uploads/2022/11/elecback-e1667796666445.jpg',

@@ -1,8 +1,8 @@
 <script>
-	import Nav from '$lib/components/nav.svelte';
-	import Background from '$lib/components/background.svelte';
-	import Metronome from '$lib/components/metronome.svelte';
-	import Playlist from '$lib/components/playlist.svelte';
+	import Nav from '$lib/components/Nav.svelte';
+	import Background from '$lib/components/Background.svelte';
+	import Metronome from '$lib/components/Metronome.svelte';
+	import Playlist from '$lib/components/Playlist.svelte';
 </script>
 
 <Nav />

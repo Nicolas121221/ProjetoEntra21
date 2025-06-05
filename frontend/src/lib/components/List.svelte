@@ -2,15 +2,22 @@
 	let { nome, data } = $props();
 </script>
 
-<section class="m-1 w-screen h-[25%] p-5 bg-zinc-950/80 pb-0">
-	<h3 class="mb-3 text-3xl font-bold text-white">{nome}</h3>
-	<div class="flex text-sm text-white overflow-x-scroll gap-10">
-		{#each data as song}
-			<article class="flex flex-col min-w-43 h-fit p-3">
-				<img src={song.src} class="h-40 w-40 rounded" alt="Imagem da Playlists" />
-				<h5 class="text-lg text-white font-semibold">{song.nome} </h5>
-                <p class="text-sm font-normal -mt-2">{song.artista}</p><p class=" text-xs text-white/50">{song.data}</p>
+<section class="max-w-screen -my-2.5 h-full bg-black/50 px-6 py-4">
+	<h3 class="text-shadow text-shadow-black mb-3 text-3xl font-bold text-white">{nome}</h3>
+	<section class="flex gap-10">
+		{#each data as playlist}
+			<article class="text-shadow-xs text-shadow-black w-52 text-xs text-white">
+				<img
+					src={playlist.src}
+					alt="imagem da playlist {playlist.nome}"
+					class="shadow-xl shadow-black"
+				/>
+				<h5 class="mt-0.5 text-sm font-bold">{playlist.nome}</h5>
+				<div class="-mt-1 flex w-full items-center justify-between">
+					<p class="text-xs font-semibold">{playlist.artista}</p>
+					<p class="opacity-75">{playlist.data}</p>
+				</div>
 			</article>
 		{/each}
-	</div>
+	</section>
 </section>

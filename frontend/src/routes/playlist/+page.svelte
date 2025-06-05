@@ -1,6 +1,6 @@
 <script>
-	import Nav from '$lib/components/nav.svelte';
-	import Background from '$lib/components/background.svelte';
+	import Nav from '$lib/components/Nav.svelte';
+	import Background from '$lib/components/Background.svelte';
 	import List from '$lib/components/List.svelte';
 
 	const playlists = Array.from({ length: 12 }, (_, i) => ({
