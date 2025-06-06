@@ -3,44 +3,49 @@
 	import Tempo from '$lib/components/Tempo.svelte';
 	import Player from './Player.svelte';
 	import Close from '$lib/svg/Close.svelte';
+	import { onMount } from 'svelte';
 
-	let none = $state(true);
+	onMount(() => {
+		function tick() {
+			let now = performance.now();
+			let delta = now - lastTime;
 
-	let bpm = $state(100);
-	let tempo = $state('4/4');
-	let contador = $state(0);
+			if (delta >= velocidade) {
+				lastTime += velocidade;
 
-	let velocidade = $derived((60 / bpm) * 1000);
+				console.log('tick')
+				style = 'rotate(0deg)'
+			}
 
-	let tempos = $derived(tempo.split('/')[1]);
-
-	let metronome = setInterval(() => {
-		contador = contador + 1;
-		if (contador > tempo.split('/')[0]) contador = 1;
-	}, velocidade);
-
-	function iniciaMetronomo() {
-		contador = 0;
-		clearInterval(metronome);
-		metronome = setInterval(() => {
-			contador = contador + 1;
-			if (contador > tempo.split('/')[0]) contador = 1;
-		}, velocidade);
-	}
-
-	function checkTempo(time) {
-		return contador === time;
-	}
-
+			requestAnimationFrame(tick);
+		}
+		tick();
+	});
+	
 	function calculaTempo() {
-		let num = parseInt(tempo.split('/')[0]);
+		const tempoArray = tempo.split('/');
 		nums = [];
-		for (let i = 1; i < num + 1; i++) {
-			nums.push(i);
+		for (let i = 1; i <= tempoArray[0]; i++) {
+			nums.push({ num: i, tempo: 1 });
 		}
 	}
 
-	let nums = $derived([1, 2, 3, 4]);
+	let none = $state(true);
+	let style = $state()
+
+	let bpm = $state(100);
+	let tempo = $state('4/4');
+
+	let velocidade = $derived((60 / bpm) * 1000);
+
+	let lastTime = performance.now();
+
+	let nums = $state([
+		{ num: 1, tempo: 1 },
+		{ num: 2, tempo: 1 },
+		{ num: 3, tempo: 1 },
+		{ num: 4, tempo: 1 }
+	]);
 </script>
 
 <section
@@ -60,7 +65,7 @@
 		<h2 class="mt-4 text-center text-4xl font-thin text-white">{bpm}Bpm {tempo}</h2>
 		<div class="w-50 mx-auto mt-3 flex flex-wrap items-center justify-center gap-2">
 			{#each nums as num}
-				<Tempo {num} tempo={1} />
+				<Tempo num={num.num} tempo={num.tempo} />
 			{/each}
 		</div>
 	</div>
@@ -69,7 +74,7 @@
 		<div
 			class="roundend mx-auto mb-10 h-96 w-1 bg-blue-700"
 			id="pointer"
-			style={'animation-duration:' + velocidade/0.5 + 'ms'}
+			style={'animation-duration:' + velocidade / 0.5 + 'ms ;' + 'animation-duration:' + velocidade / 0.5 + 'ms'}
 		></div>
 	</div>
 
@@ -84,7 +89,6 @@
 			<input
 				type="number"
 				bind:value={bpm}
-				onchange={iniciaMetronomo}
 				class="w-[50%] border border-gray-700 text-center"
 				min="1"
 				pattern="\d*"

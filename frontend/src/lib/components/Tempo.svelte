@@ -1,20 +1,22 @@
 <script>
 	let { num, tempo } = $props();
 
-	let time = $state(tempo);
+	let tempoNow = [tempo]
+
 	let tempoClass = $state('tempo');
 	function getClass() {
-		if (time === 1) return (tempoClass = 'tempo');
-		if (time === 2) return (tempoClass = 'tempo-hidden');
-		if (time === 3) return (tempoClass = 'tempo-high');
+		if (tempoNow=== 1) return (tempoClass = 'tempo');
+		if (tempoNow=== 2) return (tempoClass = 'tempo-high');
+		if (tempoNow=== 3) return (tempoClass = 'tempo-hidden');
+		if (tempoNow=== 4) return (tempoClass = 'tempo-focus');
 	}
 	getClass();
 </script>
 
 <button
 	onclick={() => {
-		time + 1;
-		if (time >= 4) time = 1;
+		tempoNow++;
+		if (tempoNow > 3) tempoNow = 1;
 		getClass();
 	}}
 >
