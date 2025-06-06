@@ -4,6 +4,7 @@
 	import Player from './Player.svelte';
 	import Close from '$lib/svg/Close.svelte';
 	import { onMount } from 'svelte';
+	import click from '$lib/audio/click.mp3'
 
 	onMount(() => {
 		function tick() {
@@ -13,15 +14,20 @@
 			if (delta >= velocidade) {
 				lastTime += velocidade;
 
-				console.log('tick')
-				style = 'rotate(0deg)'
+				style = 'animation: pointer infinite linear;';
+				style = 'animation: pointer infinite linear ' + velocidade / 0.5 + 'ms';
+				tocarAudio()
 			}
-
+			
 			requestAnimationFrame(tick);
 		}
 		tick();
 	});
 	
+	function tocarAudio() {
+		const audio = new Audio(click);
+		audio.play();
+	}
 	function calculaTempo() {
 		const tempoArray = tempo.split('/');
 		nums = [];
@@ -31,7 +37,7 @@
 	}
 
 	let none = $state(true);
-	let style = $state()
+	let style = $state();
 
 	let bpm = $state(100);
 	let tempo = $state('4/4');
@@ -71,11 +77,7 @@
 	</div>
 
 	<div>
-		<div
-			class="roundend mx-auto mb-10 h-96 w-1 bg-blue-700"
-			id="pointer"
-			style={'animation-duration:' + velocidade / 0.5 + 'ms ;' + 'animation-duration:' + velocidade / 0.5 + 'ms'}
-		></div>
+		<div class="roundend mx-auto mb-10 h-96 w-1 bg-blue-700" id="pointer" {style}></div>
 	</div>
 
 	<div
@@ -145,7 +147,6 @@
 
 <style>
 	#pointer {
-		animation: pointer infinite linear;
 		transform-origin: 50% 100%;
 	}
 
