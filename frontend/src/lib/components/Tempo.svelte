@@ -16,7 +16,7 @@
 <button
 	onclick={() => {
 		tempoNow++;
-		if (tempoNow > 3) tempoNow = 1;
+		if (tempoNow > 4) tempoNow = 1;
 		getClass();
 	}}
 >

@@ -14,8 +14,8 @@
 			if (delta >= velocidade) {
 				lastTime += velocidade;
 
-				style = 'animation: pointer infinite linear;';
-				style = 'animation: pointer infinite linear ' + velocidade / 0.5 + 'ms';
+				style=''
+				style = `animation-duration: ${velocidade/0.5}ms`
 				tocarAudio()
 			}
 			
@@ -52,6 +52,14 @@
 		{ num: 3, tempo: 1 },
 		{ num: 4, tempo: 1 }
 	]);
+
+	function validaBpm(){
+		if(!bpm) return bpm = 60
+		if(typeof bpm === 'string') return bpm = 60
+		if(bpm < 20) return bpm = 20
+		if(bpm >=400) return bpm = 400
+	}
+
 </script>
 
 <section
@@ -91,6 +99,7 @@
 			<input
 				type="number"
 				bind:value={bpm}
+				onchange={validaBpm}
 				class="w-[50%] border border-gray-700 text-center"
 				min="1"
 				pattern="\d*"
@@ -148,6 +157,7 @@
 <style>
 	#pointer {
 		transform-origin: 50% 100%;
+		animation: pointer infinite linear
 	}
 
 	@keyframes pointer {
