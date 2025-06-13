@@ -2,6 +2,7 @@
 	import Close from '$lib/svg/Close.svelte';
 	import Chevron from '$lib/svg/Chevron.svelte';
 	import Elipsis from '$lib/svg/Elipsis.svelte';
+	import { onMount } from 'svelte';
 
 	let chevron = $state(false);
 	let close = $state(false);
@@ -40,6 +41,22 @@
 			hours: false
 		});
 	}
+
+	let response = $state();
+
+	async function getChords() {
+		try {
+			if (!musica || !artista) return (response = 'Sem informações para buscar a cifra');
+
+			let data = await fetch(`http://localhost:3000/cifra/${artista}/${musica}`);
+			if (data) return response = await data.json()
+		} catch (error) {
+			console.error(error);
+			return (response = 'Nenhuma Cifra encontrada');
+		}
+	}
+
+	onMount(getChords());
 </script>
 
 <div
@@ -101,6 +118,25 @@
 </div>
 <div
 	class="{chevron
-		? 'shadow-xs h-[70vh] border-t border-t-black/20 shadow-blue-600/20'
+		? 'shadow-xs h-[80vh] border-t border-t-black/20 shadow-blue-600/20'
 		: 'h-0'} w-full bg-zinc-700/90 transition-all duration-300"
-></div>
+>
+	<pre class="text-white text-sm p-5 overflow-y-scroll h-full w-full  font-ligth font-mono {!chevron? 'hidden': ''} ">{response}</pre>
+</div>
+
+<style>
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #74747452;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #bbbbbb8e;	
+}
+
+</style>
