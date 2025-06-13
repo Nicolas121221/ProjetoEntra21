@@ -1,37 +1,8 @@
-import axios from 'axios'
-import * as cheerio from 'cheerio';
+import { getCifra } from "../controllers/cifra.controller.js";
+import { Router } from "express";
 
-async function scrapeCifra(artist, song) {
-    try {
-        artist = artist
-            .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚçÇ ]/g, "")
-            .trim()
-            .replaceAll(" ", "-")
-            .toLowerCase()
-        song = song
-            .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚçÇ ]/g, "")
-            .trim()
-            .replaceAll(" ", "-")
-            .toLowerCase()
+const router = Router();
 
-        console.log(song)
+router.use("/:artist/:song", getCifra);
 
-        const url = `https://www.cifraclub.com.br/${artist}/${song}/`;
-        const { data } = await axios.get(url);
-        const $ = cheerio.load(data);
-
-        const cifra = [];
-
-        $('.cifra-mono b').each((_, element) => {
-            cifra.push($(element).text().trim());
-        });
-
-        console.log('cifra encontrada:');
-        console.log(cifra.join(' | '));
-    } catch (error) {
-        console.error('Erro ao buscar a página:', error.message);
-    }
-}
-
-scrapeCifra('Nirvana', ' all APologies');
-
+export default router;

@@ -6,8 +6,8 @@ export const getSpotifyUser = async (req, res) => {
         res.status(200).json(query)
     } catch (error) {
         res.status(500).send('erro interno do serviodor')
-    }
-}
+    };
+};
 
 export const getSpotifyUserById = async (req, res) => {
     try {
@@ -21,6 +21,6 @@ export const getSpotifyUserById = async (req, res) => {
         res.status(200).json(query)
     } catch (error) {
         res.status(500).send('erro interno do serviodor')
-    }
-}
+    };
+};
 
