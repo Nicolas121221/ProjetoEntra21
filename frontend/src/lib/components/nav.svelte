@@ -53,7 +53,7 @@
 
 		<menu class="mt-5 flex h-[80%] flex-col items-center justify-center gap-6">
 			<MenuButton title="Playlists" href="/playlist" />
-			<MenuButton title="Documentação" href="/" />
+			<MenuButton title="Configuração" href="/config" />
 			<MenuButton title="FAQ" href="/" />
 			<MenuButton title="Saiba Mais" href="/" />
 		</menu>
