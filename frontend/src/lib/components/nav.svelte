@@ -7,6 +7,17 @@
 	import Close from '$lib/svg/Close.svelte';
 
 	let none = $state(true);
+
+	let search = false
+	let data
+	async function fetchSearch(string) {
+		try{
+			data = fetch(`http://localhost:3000/views/Playlist/1/spotify/6?q=${string}`)
+		}catch(e){
+			return 'nenhuma Música encontrada'
+		}
+	}
+
 </script>
 
 <header class="fixed left-0 right-0 top-0 z-20 min-h-10 border border-b-blue-500/20 bg-zinc-950">
@@ -20,6 +31,7 @@
 				type="search"
 				class="border-1 w-xl max-h-8 rounded-r-full border-zinc-600 bg-zinc-800 py-1 pl-2 font-semibold text-gray-100 outline-none outline-1 outline-green-100 selection:bg-blue-400 selection:text-black hover:bg-zinc-700 active:bg-zinc-800"
 				placeholder="Qual música você deseja tocar?"
+				onkeydown={fetchSearch(this.innerText)}
 			/>
 			<Microphone />
 		</div>
@@ -58,4 +70,8 @@
 			<MenuButton title="Saiba Mais" href="/" />
 		</menu>
 	</div>
+</div>
+
+<div class="z-30 fixed mx-auto w-3xl h-96">
+
 </div>
