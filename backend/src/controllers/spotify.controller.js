@@ -32,25 +32,23 @@ export const spotifyCallback = async (req, res) => {
             }
         );
 
-        const query = await models.SpotifyUser.create({
-            SpotifyUser: 1233,
+        const query = await models.SpotifyUser.update({
             access_token: data.access_token,
             refresh_token: data.refresh_token,
-            usuario_id: 3
-        })
+        }, {where:{Id:1}})
 
-        res.status(201).json('Usuário criado', query)
+        res.status(201).json({msg:'Usuário atualizado'})
 
     } catch (err) {
-        res.status(500).send(err);
+        res.status(500).send({err});
     }
 }
 
 export const getSpotifySongById = async (req, res) => {
     const id = req.params.id
-    const userId = req.params.userId
+    const userId = 1
     try {
-        const data = await axios.get(`https://5699-186-232-153-194.ngrok-free.app/spotifyUser/${userId}`)
+        const data = await axios.get(`http://localhost:3000/spotifyUser/${userId}`)
         const response = await axios.get(`https://api.spotify.com/v1/tracks/${id}`, {
             headers: {
                 Authorization: `Bearer ${data.data[0].access_token}`
@@ -64,11 +62,11 @@ export const getSpotifySongById = async (req, res) => {
 }
 export const spotifySearch = async (req, res) => {
     const {q} = req.query
-    const userId = req.params.id
+    const userId = 1
     console.log(qs.stringify(q))
 
     try {
-        const data = await axios.get(`https://5699-186-232-153-194.ngrok-free.app/spotifyUser/${userId}`)
+        const data = await axios.get(`http://localhost:3000/spotifyUser/${userId}`)
         const response = await axios.get(`https://api.spotify.com/v1/search?q=${q}&type=track%2Calbum&limit=20`, {
             headers: {
                 Authorization: `Bearer ${data.data[0].access_token}`

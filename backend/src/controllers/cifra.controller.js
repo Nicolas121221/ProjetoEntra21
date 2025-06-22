@@ -20,7 +20,7 @@ export const getCifra = async (req, res) => {
       .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚçÇ-]/g, "")
       .toLowerCase();
 
-    const url = `https://www.cifraclub.com.br/${artist}/${song}/`;
+    const url = `https://www.cifraclub.com.br/${artist}/${song}//#footerChords=false&tabs=false`;
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
