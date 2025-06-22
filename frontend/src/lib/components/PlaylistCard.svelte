@@ -123,20 +123,3 @@
 >
 	<pre class="text-white text-sm p-5 overflow-y-scroll h-full w-full  font-ligth font-mono {!chevron? 'hidden': ''} ">{response}</pre>
 </div>
-
-<style>
-::-webkit-scrollbar {
-  width: 14px;
-}
-
-
-::-webkit-scrollbar-track {
-  background: #74747452;
-}
-
-
-::-webkit-scrollbar-thumb {
-  background: #bbbbbb8e;	
-}
-
-</style>

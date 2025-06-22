@@ -7,7 +7,7 @@
 <Nav />
 
 <aside
-	class="fixed bottom-0 left-0 top-0 z-20 mt-10 w-56 border-r border-white/20 bg-gray-800/50 capitalize text-white"
+	class="fixed bottom-0 left-0 top-0 z-20 mt-10 w-56 border-r border-white/20 bg-zinc-950/95 capitalize text-white"
 >
 	<h1 class="border-b border-white/20 py-5 text-center text-2xl">Configurações</h1>
 	<section class="flex flex-col items-center">
@@ -29,7 +29,7 @@
 		<a
 			href="/config/conta"
 			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-white hover:bg-gray-800 active:bg-blue-950"
-			> <img src="https://cdn-icons-png.flaticon.com/512/61/61205.png" class="size-10" alt="Imagem de uma foto de perfil">Conta</a
+			>Conta</a
 		>
 	</section>
 </aside>

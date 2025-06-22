@@ -2,7 +2,7 @@
 	let { nome, data } = $props();
 </script>
 
-<section class="max-w-screen -my-2.5 h-full bg-black/50 px-6 py-4">
+<section class="max-w-screen -my-2.5 h-full px-6 py-4">
 	<h3 class="text-shadow text-shadow-black mb-3 text-3xl font-bold text-white">{nome}</h3>
 	<section class="flex gap-10">
 		{#each data as playlist}

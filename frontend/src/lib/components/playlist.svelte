@@ -13,9 +13,10 @@
 		songs = await response.json();
 		carregando = true;
 	});
+
 </script>
 
-<div class="m-2 mb-0 mr-0 h-[98.5%] w-full rounded border border-blue-500/20 bg-zinc-950/80 p-4">
+<div class="m-2 mb-0 mr-0 h-[98.5%] w-full rounded border border-blue-500/20 bg-zinc-950/95 p-4">
 	<div class="flex">
 		<h2
 			class="mx-auto text-center text-xl text-white duration-100 hover:text-blue-400 hover:underline"
@@ -27,10 +28,10 @@
 		</button>
 	</div>
 
-	<div class="max-h-[87vh] mt-5 w-full overflow-y-scroll  min-h-[80vh]">
+	<div class="mt-5 max-h-[87vh] min-h-[80vh] w-full overflow-y-scroll">
 		<header class=" h-4 bg-zinc-800">
 			<ul
-				class="text-bold flex select-none items-center justify-between gap-1 text-xs text-gray-400 "
+				class="text-bold flex select-none items-center justify-between gap-1 text-xs text-gray-400"
 			>
 				<li class="w-10 border-r-2 border-r-zinc-900 text-center">N°</li>
 				<li class="w-[40%] border-r-2 border-r-zinc-900">Música</li>
@@ -94,16 +95,14 @@
 
 <style>
 	::-webkit-scrollbar {
-  width: 14px;
-}
+		width: 14px;
+	}
 
+	::-webkit-scrollbar-track {
+		background: #74747452;
+	}
 
-::-webkit-scrollbar-track {
-  background: #74747452;
-}
-
-
-::-webkit-scrollbar-thumb {
-  background: #bbbbbb8e;	
-}
+	::-webkit-scrollbar-thumb {
+		background: #bbbbbb8e;
+	}
 </style>
