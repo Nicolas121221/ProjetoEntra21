@@ -1,4 +1,3 @@
-import { where } from "sequelize";
 import models from "../models/index.js"
 
 export const getPlaylist = async (req, res) => {
@@ -37,7 +36,7 @@ export const createPlaylist = async (req, res) => {
             usuario_id,
         });
 
-        res.status(201).json(data)
+        res.status(201).send(data)
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao criar playlist' })
