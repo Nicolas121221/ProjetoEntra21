@@ -4,7 +4,7 @@
 	import Player from './Player.svelte';
 	import Close from '$lib/svg/Close.svelte';
 	import { onMount } from 'svelte';
-	import click from '$lib/audio/click.mp3'
+	import click from '$lib/audio/click.mp3';
 
 	onMount(() => {
 		function tick() {
@@ -13,34 +13,37 @@
 
 			if (delta >= velocidade) {
 				lastTime += velocidade;
-
-				style=''
-				style = `animation-duration: ${velocidade/0.5}ms`
-				tocarAudio()
+				style = '';
+				style = `animation-duration: ${velocidade / 0.5}ms`;
+				tocarAudio();
+				increment()
 			}
-			
+
 			requestAnimationFrame(tick);
 		}
 		tick();
 	});
-	
+
 	function tocarAudio() {
 		const audio = new Audio(click);
 		audio.play();
 	}
+
 	function calculaTempo() {
-		const tempoArray = tempo.split('/');
 		nums = [];
 		for (let i = 1; i <= tempoArray[0]; i++) {
 			nums.push({ num: i, tempo: 1 });
 		}
 	}
 
+	let counter = $state(1);
+
 	let none = $state(true);
 	let style = $state();
 
 	let bpm = $state(100);
 	let tempo = $state('4/4');
+	let tempoArray = $derived(tempo.split('/'));
 
 	let velocidade = $derived((60 / bpm) * 1000);
 
@@ -53,13 +56,16 @@
 		{ num: 4, tempo: 1 }
 	]);
 
-	function validaBpm(){
-		if(!bpm) return bpm = 60
-		if(typeof bpm === 'string') return bpm = 60
-		if(bpm < 20) return bpm = 20
-		if(bpm >=400) return bpm = 400
+	function increment() {
+		counter ++
+		if(counter >= tempoArray[0]) return counter = 1
 	}
-
+	function validaBpm() {
+		if (!bpm) return (bpm = 60);
+		if (typeof bpm === 'string') return (bpm = 60);
+		if (bpm < 20) return (bpm = 20);
+		if (bpm >= 400) return (bpm = 400);
+	}
 </script>
 
 <section
@@ -79,7 +85,7 @@
 		<h2 class="mt-4 text-center text-4xl font-thin text-white">{bpm}Bpm {tempo}</h2>
 		<div class="w-50 mx-auto mt-3 flex flex-wrap items-center justify-center gap-2">
 			{#each nums as num}
-				<Tempo num={num.num} tempo={num.tempo} />
+				<Tempo num={num.num} tempo={num.tempo} count{counter}/>
 			{/each}
 		</div>
 	</div>
@@ -157,7 +163,7 @@
 <style>
 	#pointer {
 		transform-origin: 50% 100%;
-		animation: pointer infinite linear
+		animation: pointer infinite linear;
 	}
 
 	@keyframes pointer {

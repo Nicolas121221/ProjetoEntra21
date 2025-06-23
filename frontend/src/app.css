@@ -14,3 +14,7 @@
 .tempo-high{
     @apply rounded-full size-10 bg-blue-600/50 flex justify-center items-center select-none text-2xl font-sans text-white scale-110 border-blue-600 border
 }
+
+b{
+  @apply text-blue-500 font-bold text-shadow-black
+}

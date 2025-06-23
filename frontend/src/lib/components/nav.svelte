@@ -8,16 +8,28 @@
 
 	let none = $state(true);
 
-	let search = false
-	let data
-	async function fetchSearch(string) {
-		try{
-			data = fetch(`http://localhost:3000/views/Playlist/1/spotify/6?q=${string}`)
-		}catch(e){
-			return 'nenhuma Música encontrada'
+	let data = $state();
+	let search = $state();
+	async function fetchSearch() {
+		try {
+			data = ''
+			const res = await fetch(`http://localhost:3000/spotify/search/1?q=${search}`);
+			data = await res.json();
+			data = data.tracks.items;
+		} catch (e) {
+			console.error('Erro na busca:', e);
 		}
 	}
 
+	function debounce(func, delay) {
+		let timeout;
+		return function (...args) {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => func.apply(this, args), delay);
+		};
+	}
+
+	const debouncedFetchSearch = debounce(fetchSearch, 500);
 </script>
 
 <header class="fixed left-0 right-0 top-0 z-20 min-h-10 border border-b-blue-500/20 bg-zinc-950">
@@ -31,7 +43,8 @@
 				type="search"
 				class="border-1 w-xl max-h-8 rounded-r-full border-zinc-600 bg-zinc-800 py-1 pl-2 font-semibold text-gray-100 outline-none outline-1 outline-green-100 selection:bg-blue-400 selection:text-black hover:bg-zinc-700 active:bg-zinc-800"
 				placeholder="Qual música você deseja tocar?"
-				onkeydown={fetchSearch(this.innerText)}
+				bind:value={search}
+				onkeydown={debouncedFetchSearch}
 			/>
 			<Microphone />
 		</div>
@@ -49,12 +62,12 @@
 		: 'opacity-100'}"
 >
 	<div
-		class="w-2xl z-10 h-[450px] transform bg-zinc-950 p-1 shadow-xs shadow-blue-950 transition-all duration-300 {none
+		class="w-2xl border-1 z-10 h-[450px] transfor bg-zinc-950 p-4 transition-all duration-300 {none
 			? '-translate-y-20 opacity-0'
 			: 'translate-y-0 opacity-100'}"
 	>
 		<div class="flex items-center">
-			<h2 class="mx-auto text-center font-bold capitalize text-white hover:text-blue-500">Menu</h2>
+			<h2 class="mx-auto text-center font-bold capitalize text-white">Menu</h2>
 			<button
 				onclick={() => (none = !none)}
 				class="-ml-8 inline h-8 w-8 text-right hover:bg-red-600"
@@ -72,6 +85,42 @@
 	</div>
 </div>
 
-<div class="z-30 fixed mx-auto w-3xl h-96">
-
+<div
+	class="fixed inset-0 z-10 flex h-[100dvh] w-[100dvw] items-center justify-center bg-black/30 transition-opacity duration-300 {!search
+		? 'pointer-events-none opacity-0'
+		: 'opacity-100'}"
+>
+	<div
+		class="w-2xl border-1 z-10 h-[450px] transform bg-zinc-950 p-4 transition-all duration-300 {!search
+			? '-translate-y-20 opacity-0'
+			: 'translate-y-0 opacity-100'}"
+	>
+		<div class="flex items-center">
+			<h2 class="mx-auto text-center font-bold capitalize text-white">Pesquisar</h2>
+			<button
+				onclick={() => (search = '')}
+				class="-ml-8 inline h-8 w-8 text-right hover:bg-red-600"
+			>
+				<Close />
+			</button>
+		</div>
+		<section class="w-full overflow-y-scroll h-[90%]">
+			{#if data}
+				{#each data as song}
+					<a class="w-full border-x-0 border-white/5 text-white capitalize p-2 flex items-center gap-3 hover:bg-zinc-800 duration-150 cursor-pointer" href="/{song.id}/musicas">
+						<img src={song.album.images[0].url} alt=' ' class="size-10"/>
+						<h5 class="font-semibold">{song.name} -  <span class="opacity-50 text-xs font-thin">{song.album.name+" "+song.album.release_date}</span></h5> 
+						<div class="text-sm font-normal">{song.artists[0].name}</div>
+					</a>
+				{/each}
+			{:else}
+				<section class="mx-auto mt-20">
+					<div
+						class="mx-auto size-7 animate-spin rounded-full border-2 border-white/30 border-b-blue-700"
+					></div>
+					<p class="text-center text-2xl text-white">Carregando</p>
+				</section>
+			{/if}
+		</section>
+	</div>
 </div>

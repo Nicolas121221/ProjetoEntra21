@@ -28,10 +28,10 @@
 		</button>
 	</div>
 
-	<div class="mt-5 max-h-[87vh] min-h-[80vh] w-full overflow-y-scroll">
-		<header class=" h-4 bg-zinc-800">
+	<div class="mt-5 max-h-[80vh]">
+		<header class="h-4 bg-zinc-800">
 			<ul
-				class="text-bold flex select-none items-center justify-between gap-1 text-xs text-gray-400"
+				class="text-bold flex select-none items-center justify-between gap-1 text-xs text-gray-400 mr-[17px]"
 			>
 				<li class="w-10 border-r-2 border-r-zinc-900 text-center">N°</li>
 				<li class="w-[40%] border-r-2 border-r-zinc-900">Música</li>
@@ -52,6 +52,7 @@
 				<p class="text-center text-2xl text-white">Carregando</p>
 			</section>
 		{:else}
+		<section class="max-h-[85vh] overflow-y-scroll">
 			{#each songs as song}
 				<PlaylistCard
 					num={song.musica_id}
@@ -68,6 +69,7 @@
 					artistaUrl={song.artistas_fotos_urls}
 				/>
 			{/each}
+			</section>
 		{/if}
 	</div>
 </div>

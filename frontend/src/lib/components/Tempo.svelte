@@ -1,26 +1,28 @@
 <script>
-	let { num, tempo } = $props();
-
-	let tempoNow = [tempo]
+	let { num, tempo, count } = $props();
 
 	let tempoClass = $state('tempo');
+
 	function getClass() {
-		if (tempoNow=== 1) return (tempoClass = 'tempo');
-		if (tempoNow=== 2) return (tempoClass = 'tempo-high');
-		if (tempoNow=== 3) return (tempoClass = 'tempo-hidden');
-		if (tempoNow=== 4) return (tempoClass = 'tempo-focus');
+		if (tempo === 1) return (tempoClass = 'tempo');
+		if (tempo === 2) return (tempoClass = 'tempo-high');
+		if (tempo === 3) return (tempoClass = 'tempo-hidden');
 	}
 	getClass();
 </script>
 
 <button
 	onclick={() => {
-		tempoNow++;
-		if (tempoNow > 4) tempoNow = 1;
+		tempo++;
+		if (tempo >= 4) tempo = 1;
 		getClass();
 	}}
 >
-	<div class="duration-50 cursor-pointer text-center active:scale-95 {tempoClass}">
+	<div
+		class="duration-50 cursor-pointer text-center active:scale-95 {count === num
+			? "tempo-focus"
+			: tempoClass}"
+	>
 		{num}
 	</div>
 </button>

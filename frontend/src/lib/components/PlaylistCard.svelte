@@ -46,23 +46,28 @@
 
 	async function getChords() {
 		try {
-			if (!musica || !artista) return (response = 'Sem informações para buscar a cifra');
+			if (!musica || !artista) return response = 'Sem informações para buscar a cifra';
 
 			let data = await fetch(`http://localhost:3000/cifra/${artista}/${musica}`);
-			if (data) return response = await data.json()
+			if (data) {
+				return response = await data.json()
+			} else {
+				return response = 'Não foi possível encontrar a cifra'
+			}
 		} catch (error) {
 			console.error(error);
 			return (response = 'Nenhuma Cifra encontrada');
 		}
 	}
 
-	onMount(getChords());
+	onMount(getChords);
 </script>
 
 <div
 	class="h-13 shadow-xs mt-0.5 flex items-center justify-between gap-1 bg-zinc-700 text-white shadow-blue-600/20 {close
 		? 'hidden'
 		: ''}"
+		id="el"
 >
 	<div class="flex h-full w-10 items-center justify-center border-r-2 border-r-zinc-900 text-xl">
 		{num}
@@ -105,7 +110,12 @@
 		{formataData(data2)}
 	</div>
 	<div class="flex h-full w-[13%] items-center justify-evenly text-lg">
-		<button onclick={() => (chevron = !chevron)} class={chevron ? 'rotate-0' : 'rotate-z-90'}>
+		<button
+			onclick={() => {
+				chevron = !chevron;
+			}}
+			class={chevron ? 'rotate-z-90' : 'rotate-0'}
+		>
 			<Chevron />
 		</button>
 		<button class="size-6" onclick={() => (close = !close)}>
@@ -116,10 +126,25 @@
 		</button>
 	</div>
 </div>
-<div
-	class="{chevron
-		? 'shadow-xs h-[80vh] border-t border-t-black/20 shadow-blue-600/20'
-		: 'h-0'} w-full bg-zinc-700/90 transition-all duration-300"
->
-	<pre class="text-white text-sm p-5 overflow-y-scroll h-full w-full  font-ligth font-mono {!chevron? 'hidden': ''} ">{response}</pre>
+<div class="{chevron ? 'h-[75vh]' : 'h-0'} w-full bg-zinc-700/90 transition-all duration-300">
+	{#if response}
+		<section
+			class="font-ligth h-[75vh] w-full overflow-y-scroll p-5 font-mono text-sm text-white grid-cols-2 grid gap-x-6 gap-y-0 {!chevron
+				? 'hidden'
+				: ''} ">
+			{#each response as res}
+					<article >
+					<h6>[{@html res.title}]</h6>
+					<pre>{@html res.content}</pre>
+				</article>
+			{/each}
+	</section>
+	{:else}
+		<section class="mx-auto pt-20 {!chevron ? 'hidden' : ''} ">
+			<div
+				class="mx-auto size-7 animate-spin rounded-full border-2 border-white/30 border-b-blue-700"
+			></div>
+			<p class="text-center text-2xl text-white">Carregando</p>
+		</section>
+	{/if}
 </div>
