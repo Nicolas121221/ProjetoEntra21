@@ -12,7 +12,7 @@
 	let search = $state();
 	async function fetchSearch() {
 		try {
-			data = ''
+			data = '';
 			const res = await fetch(`http://localhost:3000/spotify/search/1?q=${search}`);
 			data = await res.json();
 			data = data.tracks.items;
@@ -62,7 +62,7 @@
 		: 'opacity-100'}"
 >
 	<div
-		class="w-2xl border-1 z-10 h-[450px] transfor bg-zinc-950 p-4 transition-all duration-300 {none
+		class="w-2xl border-1 transfor z-10 h-[450px] bg-zinc-950 p-4 transition-all duration-300 {none
 			? '-translate-y-20 opacity-0'
 			: 'translate-y-0 opacity-100'}"
 	>
@@ -104,12 +104,21 @@
 				<Close />
 			</button>
 		</div>
-		<section class="w-full overflow-y-scroll h-[90%]">
+		<section class="h-[90%] w-full overflow-y-scroll">
 			{#if data}
 				{#each data as song}
-					<a class="w-full border-x-0 border-white/5 text-white capitalize p-2 flex items-center gap-3 hover:bg-zinc-800 duration-150 cursor-pointer" href="/{song.id}/musicas">
-						<img src={song.album.images[0].url} alt=' ' class="size-10"/>
-						<h5 class="font-semibold">{song.name} -  <span class="opacity-50 text-xs font-thin">{song.album.name+" "+song.album.release_date}</span></h5> 
+					<a
+						class="flex w-full cursor-pointer items-center gap-3 border-x-0 border-white/5 p-2 capitalize text-white duration-150 hover:bg-zinc-800"
+						href="/{song.id}/musica"
+						onclick={()=>{search = ''}}
+					>
+						<img src={song.album.images[0].url} alt=" " class="size-10" />
+						<h5 class="font-semibold">
+							{song.name} -
+							<span class="text-xs font-thin opacity-50"
+								>{song.album.name + ' ' + song.album.release_date}</span
+							>
+						</h5>
 						<div class="text-sm font-normal">{song.artists[0].name}</div>
 					</a>
 				{/each}
