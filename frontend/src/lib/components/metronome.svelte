@@ -69,7 +69,7 @@
 </script>
 
 <section
-	class="w-2xl m-2 flex h-[98.5%] grow-0 flex-col justify-between border border-blue-500/20 bg-zinc-950/95 p-4"
+	class="w-2xl m-2 flex h-[98.5%] grow-0 flex-col justify-between border border-blue-500/60 rounded bg-zinc-950/95 p-4"
 >
 	<div class="flex">
 		<h3
@@ -91,7 +91,7 @@
 	</div>
 
 	<div>
-		<div class="roundend mx-auto mb-10 h-96 w-1 bg-blue-700" id="pointer" {style}></div>
+		<div class="roundend mx-auto mb-10 h-96 w-1 bg-blue-500" id="pointer" {style}></div>
 	</div>
 
 	<div

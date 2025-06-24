@@ -32,7 +32,7 @@
 	const debouncedFetchSearch = debounce(fetchSearch, 500);
 </script>
 
-<header class="fixed left-0 right-0 top-0 z-20 min-h-10 border border-b-blue-500/20 bg-zinc-950">
+<header class="fixed left-0 right-0 top-0 z-20 min-h-10 border-b border-b-blue-500/60 bg-zinc-950">
 	<nav class="flex items-center justify-between px-5">
 		<button onclick={(none = !none)}>
 			<Hamburguer />
@@ -62,7 +62,7 @@
 		: 'opacity-100'}"
 >
 	<div
-		class="w-2xl border-1 transfor z-10 h-[450px] bg-zinc-950 p-4 transition-all duration-300 {none
+		class="w-2xl transform z-10 h-[450px] bg-zinc-950 p-4 border-blue-500/60 rounded-lg border transition-all duration-300 {none
 			? '-translate-y-20 opacity-0'
 			: 'translate-y-0 opacity-100'}"
 	>
@@ -80,7 +80,7 @@
 			<MenuButton title="Playlists" href="/playlist" />
 			<MenuButton title="Configuração" href="/config" />
 			<MenuButton title="FAQ" href="/" />
-			<MenuButton title="Saiba Mais" href="/" />
+			<MenuButton title="Saiba Mais" href="https://github.com/Nicolas121221/ProjetoEntra21" />
 		</menu>
 	</div>
 </div>
@@ -91,7 +91,7 @@
 		: 'opacity-100'}"
 >
 	<div
-		class="w-2xl border-1 z-10 h-[450px] transform bg-zinc-950 p-4 transition-all duration-300 {!search
+		class="w-2xl border-blue-500/60 rounded-lg border z-10 h-[450px] transform bg-zinc-950 p-4 transition-all duration-300 {!search
 			? '-translate-y-20 opacity-0'
 			: 'translate-y-0 opacity-100'}"
 	>
