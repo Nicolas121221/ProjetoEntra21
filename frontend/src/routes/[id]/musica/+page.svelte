@@ -48,7 +48,7 @@
 		</section>
 		<section class="mt-10 h-fit rounded-xl border border-white/20 bg-gray-950/50 p-10">
 			<h5 class="pr-20 pt-5 text-right text-2xl font-semibold capitalize text-white">
-				Cifra<a href="https://www.cifraclub.com.br/"
+				Cifra<a href="https://www.cifraclub.com.br"
 					><img
 						src="https://lh3.googleusercontent.com/2pAYbfice3PNJcQErwmjSfuCIvM4cVr3fL4QZzGWb9voP3yrqiXv-JSf0ntakIuB9dM=w300"
 						alt="Logo do cifraclub"

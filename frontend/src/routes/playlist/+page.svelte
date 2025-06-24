@@ -43,15 +43,15 @@
 </main>
 
 <style>
-	::-webkit-scrollbar {
-		width: 14px;
-	}
-
-	::-webkit-scrollbar-track {
-		background: #74747452;
-	}
-
-	::-webkit-scrollbar-thumb {
-		background: #bbbbbb8e;
+	:global{
+		::-webkit-scrollbar {
+			width: 14px;
+		}
+		::-webkit-scrollbar-track {
+			background: #74747452;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #bbbbbb8e;
+		}
 	}
 </style>
