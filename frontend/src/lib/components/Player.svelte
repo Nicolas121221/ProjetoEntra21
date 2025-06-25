@@ -1,4 +1,5 @@
 <script>
+	let { functions } = $props();
 	import Sound from '$lib/svg/Sound.svelte';
 	import Backward from '$lib/svg/Backward.svelte';
 	import Forward from '$lib/svg/Forward.svelte';
@@ -31,7 +32,7 @@
 	</div>
 	<div class="flex-1/3 flex items-center justify-center">
 		<Backward />
-		<Pause />
+		<Pause functions={functions}/>
 		<Forward />
 	</div>
 	<div class="flex-1/3 flex items-center justify-center gap-5">
@@ -50,7 +51,7 @@
 		}
 	}
 
-	#progress-bar{
+	#progress-bar {
 		animation: progress-bar linear 154200ms;
 	}
 </style>

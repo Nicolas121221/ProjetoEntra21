@@ -50,7 +50,7 @@
 		</div>
 
 		<div class="text-wh flex gap-4 text-lg text-white">
-			<h1 class="font-bold duration-150 hover:text-blue-500">Rhythm</h1>
+			<h1 class="font-bold">Rhythm</h1>
 			<Logo />
 		</div>
 	</nav>

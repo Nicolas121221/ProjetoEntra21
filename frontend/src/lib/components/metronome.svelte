@@ -3,26 +3,7 @@
 	import Tempo from '$lib/components/Tempo.svelte';
 	import Player from './Player.svelte';
 	import Close from '$lib/svg/Close.svelte';
-	import { onMount } from 'svelte';
 	import click from '$lib/audio/click.mp3';
-
-	onMount(() => {
-		function tick() {
-			let now = performance.now();
-			let delta = now - lastTime;
-
-			if (delta >= velocidade) {
-				lastTime += velocidade;
-				style = '';
-				style = `animation-duration: ${velocidade / 0.5}ms`;
-				tocarAudio();
-				increment()
-			}
-
-			requestAnimationFrame(tick);
-		}
-		tick();
-	});
 
 	function tocarAudio() {
 		const audio = new Audio(click);
@@ -30,14 +11,13 @@
 	}
 
 	function calculaTempo() {
+		functions.stop = true
 		nums = [];
 		for (let i = 1; i <= tempoArray[0]; i++) {
 			nums.push({ num: i, tempo: 1 });
 		}
+		functions.start();
 	}
-
-	let counter = $state(1);
-
 	let none = $state(true);
 	let style = $state();
 
@@ -49,27 +29,47 @@
 
 	let lastTime = performance.now();
 
+	let counter = $state(1);
+
+	let functions = {};
+
 	let nums = $state([
-		{ num: 1, tempo: 1 },
-		{ num: 2, tempo: 1 },
-		{ num: 3, tempo: 1 },
-		{ num: 4, tempo: 1 }
+		{ num: 1, tempo: 1 , tempoFocus: false},
+		{ num: 2, tempo: 1 , tempoFocus: false},
+		{ num: 3, tempo: 1 , tempoFocus: false},
+		{ num: 4, tempo: 1 , tempoFocus: false}
 	]);
 
-	function increment() {
-		counter ++
-		if(counter >= tempoArray[0]) return counter = 1
-	}
-	function validaBpm() {
-		if (!bpm) return (bpm = 60);
-		if (typeof bpm === 'string') return (bpm = 60);
-		if (bpm < 20) return (bpm = 20);
-		if (bpm >= 400) return (bpm = 400);
-	}
+	functions.start = () => {
+		(function tick() {
+			if (functions.stop) {
+				functions.stop = false;
+				style = '';
+				nums[counter-1].tempoFocus = false;
+				return;
+			}
+			let now = performance.now();
+			let delta = now - lastTime;
+			
+			if (delta >= velocidade) {
+				lastTime += velocidade;
+				style = '';
+				style = `animation-duration: ${velocidade / 0.5}ms`;
+				tocarAudio();
+				nums[counter-1].tempoFocus = false;
+				counter++;
+				if (counter > tempoArray[0]) counter = 1;
+				nums[counter-1].tempoFocus = true;
+			}
+			requestAnimationFrame(tick);
+		})();
+	};
+
+	functions.stop = false;
 </script>
 
 <section
-	class="w-2xl m-2 flex h-[98.5%] grow-0 flex-col justify-between border border-blue-500/60 rounded bg-zinc-950/95 p-4"
+	class="w-2xl m-2 flex h-[98.5%] grow-0 flex-col justify-between rounded border border-blue-500/60 bg-zinc-950/80 p-4"
 >
 	<div class="flex">
 		<h3
@@ -85,7 +85,7 @@
 		<h2 class="mt-4 text-center text-4xl font-thin text-white">{bpm}Bpm {tempo}</h2>
 		<div class="w-50 mx-auto mt-3 flex flex-wrap items-center justify-center gap-2">
 			{#each nums as num}
-				<Tempo num={num.num} tempo={num.tempo} count{counter}/>
+				<Tempo num={num.num} tempo={num.tempo} tempoFocus={num.tempoFocus}/>
 			{/each}
 		</div>
 	</div>
@@ -105,7 +105,12 @@
 			<input
 				type="number"
 				bind:value={bpm}
-				onchange={validaBpm}
+				onchange={() => {
+					if (!bpm) return (bpm = 60);
+					if (typeof bpm === 'string') return (bpm = 60);
+					if (bpm < 20) return (bpm = 20);
+					if (bpm >= 400) return (bpm = 400);
+				}}
 				class="w-[50%] border border-gray-700 text-center"
 				min="1"
 				pattern="\d*"
@@ -132,7 +137,7 @@
 		</div>
 	</div>
 	<div>
-		<Player />
+		<Player {functions} />
 	</div>
 </section>
 
@@ -168,13 +173,13 @@
 
 	@keyframes pointer {
 		0% {
-			rotate: z 40deg;
+			rotate: z 37deg;
 		}
 		50% {
-			rotate: z -40deg;
+			rotate: z -37deg;
 		}
 		100% {
-			rotate: z 40deg;
+			rotate: z 37deg;
 		}
 	}
 </style>
