@@ -4,6 +4,7 @@
 	import Player from './Player.svelte';
 	import Close from '$lib/svg/Close.svelte';
 	import click from '$lib/audio/click.mp3';
+	import FlashMessages from './FlashMessages.svelte';
 
 	function tocarAudio() {
 		const audio = new Audio(click);
@@ -164,6 +165,7 @@
 		</div>
 	</div>
 </div>
+
 
 <style>
 	#pointer {
