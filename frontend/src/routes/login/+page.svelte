@@ -14,10 +14,12 @@
 		num++;
 	}, 10000);
 
-	async function fazerLogin(){
-		
-	}
+	async function fazerLogin() {}
 </script>
+
+<svelte:head>
+	<link rel="preload" as="img" href={src[num]} />
+</svelte:head>
 
 <Background />
 
@@ -26,9 +28,7 @@
 		class="w-4xl max-w-screen mx-4 flex h-[600px] max-h-screen rounded border border-gray-900 bg-gray-950"
 	>
 		<section
-			rel="preload"
-			as="img"
-			class="flex-2/6 block h-full bg-gray-900 bg-cover bg-center"
+			class="flex-2/6 h-full block bg-cover bg-center"
 			style="background-image: url({src[num]});"
 		>
 			<div
@@ -42,7 +42,7 @@
 			</div>
 		</section>
 		<div
-			class="flex-2/4 flex h-full flex-col items-center justify-center gap-4 bg-neutral-950/80 text-white"
+			class="flex-2/4 z-10 flex h-full flex-col items-center justify-center gap-4 bg-neutral-950/80 text-white"
 		>
 			<p class="text-center capitalize text-gray-200">Entrar com uma conta</p>
 			<input

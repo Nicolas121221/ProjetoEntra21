@@ -114,7 +114,7 @@
 			onclick={() => {
 				chevron = !chevron;
 			}}
-			class={chevron ? 'rotate-z-90' : 'rotate-0'}
+			class='{chevron ? 'rotate-z-90' : 'rotate-0'} duration-75'
 		>
 			<Chevron />
 		</button>

@@ -74,7 +74,7 @@
 >
 	<div class="flex">
 		<h3
-			class="mx-auto text-center text-xl text-white duration-100 hover:text-blue-400 hover:underline"
+			class="mx-auto text-center text-xl text-white"
 		>
 			Metrônomo
 		</h3>
@@ -92,7 +92,7 @@
 	</div>
 
 	<div>
-		<div class="roundend mx-auto mb-10 h-96 w-1 bg-blue-500" id="pointer" {style}></div>
+		<div class="rounded mx-auto mb-10 h-96 w-1 bg-blue-500" id="pointer" {style}></div>
 	</div>
 
 	<div
@@ -109,11 +109,11 @@
 				onchange={() => {
 					if (!bpm) return (bpm = 60);
 					if (typeof bpm === 'string') return (bpm = 60);
-					if (bpm < 20) return (bpm = 20);
+					if (bpm < 40) return (bpm = 40);
 					if (bpm >= 400) return (bpm = 400);
 				}}
 				class="w-[50%] border border-gray-700 text-center"
-				min="1"
+				min="21"
 				pattern="\d*"
 			/>
 			<select

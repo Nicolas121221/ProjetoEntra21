@@ -2,7 +2,7 @@
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 24 24"
 	fill="currentColor"
-	class="border-1 rounded-4xl ml-1 hidden size-8 border-zinc-600 bg-zinc-800 fill-amber-50 p-2 hover:cursor-pointer hover:bg-zinc-700 sm:block"
+	class="border-1 rounded-full ml-1 h-7 w-9 p-1 border-zinc-600 bg-zinc-800 fill-white cursor-pointer hover:bg-zinc-700"
 >
 	<path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z" />
 	<path

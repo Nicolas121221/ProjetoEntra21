@@ -12,10 +12,14 @@
 		'Polly',
 		'2:34'
 	];
+
+	let style = $state('width: 0px')
+	functions.stop?style='animation: progress-bar linear 154200ms': style='width: 0px'
+
 </script>
 
 <div class="w-xs relative -z-0 mx-auto -mb-0.5 mt-10 h-1 rounded-2xl bg-gray-400">
-	<div class="rounded-2xs h-1 bg-blue-700" id="progress-bar"></div>
+	<div class="rounded-2xs h-1 bg-blue-700" {style}></div>
 </div>
 <section
 	class="w-sm relative top-0 mx-auto flex h-12 items-center justify-center rounded-full bg-gray-900 shadow-sm shadow-gray-950"
@@ -49,9 +53,5 @@
 		to {
 			width: 100%;
 		}
-	}
-
-	#progress-bar {
-		animation: progress-bar linear 154200ms;
 	}
 </style>

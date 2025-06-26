@@ -41,7 +41,7 @@
 			<Magnifier />
 			<input
 				type="search"
-				class="border-1 w-xl max-h-8 rounded-r-full border-zinc-600 bg-zinc-800 py-1 pl-2 font-semibold text-gray-100 outline-none outline-1 outline-green-100 selection:bg-blue-400 selection:text-black hover:bg-zinc-700 active:bg-zinc-800"
+				class="border-1 w-xl max-h-7 rounded-r-full border-zinc-600 bg-zinc-800 py-1 pl-2 font-semibold text-gray-100 outline-none outline-1 outline-green-100 selection:bg-blue-400 selection:text-black hover:bg-zinc-700 active:bg-zinc-800"
 				placeholder="Qual música você deseja tocar?"
 				bind:value={search}
 				onkeydown={debouncedFetchSearch}

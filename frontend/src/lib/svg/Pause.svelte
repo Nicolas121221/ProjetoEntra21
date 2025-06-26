@@ -12,7 +12,7 @@
 <button onclick={changeMetronome} class="cursor-pointer" onkeyup={(e)=>{
 	if(e.code === 'space') changeMetronome()
 }}>
-	{#if paused}
+	{#if !paused}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 24 24"

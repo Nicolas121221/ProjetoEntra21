@@ -9,7 +9,7 @@
 <Nav />
 <Background />
 <main class="fixed bottom-0 left-0 right-0 top-0 flex items-center justify-center">
-	<section class="text-xl text-white">
+	<section class="text-xl text-white shadow-md bg-zinc-950 p-4 rounded-md">
 		<h2 class="text-2xl mb-2">Erro: {status}</h2>
 		{#if status === 404}
 			<p class="rounded border border-red-500 bg-red-500/20 px-2 py-1 text-red-500">Esta página não existe.</p>
