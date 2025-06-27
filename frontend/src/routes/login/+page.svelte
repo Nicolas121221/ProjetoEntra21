@@ -14,25 +14,25 @@
 		num++;
 	}, 10000);
 
-	async function fazerLogin() {}
+	async function enviaForm() {}
 </script>
 
 <svelte:head>
-	<link rel="preload" as="img" href={src[num]} />
+	<link rel="preload" href={src[num]} />
 </svelte:head>
 
 <Background />
 
 <main class="flex h-screen w-screen items-center justify-center">
 	<section
-		class="w-4xl max-w-screen mx-4 flex h-[600px] max-h-screen rounded border border-gray-900 bg-gray-950"
+		class="w-4xl mx-4 flex h-[600px] max-h-screen bg-zinc-900"
 	>
 		<section
-			class="flex-2/6 h-full block bg-cover bg-center"
+			class="flex-2/6 block h-full bg-cover bg-center border-r border-r-white/20"
 			style="background-image: url({src[num]});"
 		>
 			<div
-				class="relative bottom-0 left-0 right-0 top-0 h-full w-full bg-gray-950/50 transition-colors duration-200 hover:bg-gray-950/30"
+				class="relative bottom-0 left-0 right-0 top-0 h-full w-full bg-gray-950/20 transition-colors duration-200 hover:bg-gray-950/10"
 			>
 				<h2
 					class="text-shadow-lg pt-10 text-center font-sans text-2xl font-semibold text-white hover:underline"
@@ -44,22 +44,39 @@
 		<div
 			class="flex-2/4 z-10 flex h-full flex-col items-center justify-center gap-4 bg-neutral-950/80 text-white"
 		>
-			<p class="text-center capitalize text-gray-200">Entrar com uma conta</p>
-			<input
-				type="text"
-				name="usuario"
-				id="usuario"
-				placeholder="Usuario"
-				class="w-[60%] border-b bg-gray-900/20 px-4 py-2 outline-none placeholder:text-lg focus:bg-blue-950"
-			/>
+			<p class="text-center text-lg capitalize">Entrar com uma conta</p>
+			<form action={enviaForm} class="flex gap-4 justify-center items-center flex-col w-full">
+				<label for="senha" class="-mb-4 w-[60%]">Email:</label>
+				<input
+					type="email"
+					name="usuario"
+					id="usuario"
+					placeholder="usuario@email.com"
+					class="w-[60%] border border-white/30 border-b-white bg-gray-900/20 px-4 py-1 outline-none focus:bg-blue-950"
+				/>
 
-			<input
-				type="password"
-				name="senha"
-				id="senha"
-				placeholder="Senha"
-				class=": w-[60%] border-b bg-gray-900/20 px-4 py-2 outline-none placeholder:text-lg focus:bg-blue-950"
-			/>
+				<label for="senha" class="-mb-4 w-[60%]">Senha:</label>
+				<input
+					type="password"
+					name="senha"
+					id="senha"
+					placeholder="sua senha"
+					class=": w-[60%] border border-b border-white/30 border-b-white bg-gray-900/20 px-4 py-1 outline-none focus:bg-blue-950"
+				/>
+			</form>
+
+			<hr class="w-[80%] bg-white opacity-20" />
+			<button
+				class="w-[60%] cursor-pointer border border-green-400 py-1 font-bold text-green-400 duration-75 hover:bg-green-500/20"
+			>
+				Login
+			</button>
+			<button
+				class="w-[60%] cursor-pointer border border-blue-400 py-1 font-bold text-blue-400 duration-75 hover:bg-blue-500/20"
+			>
+				Cadastrar-se
+			</button>
+
 			<div class="mt-1 flex gap-3">
 				<a href="/Login"
 					><img
@@ -83,22 +100,10 @@
 					/></a
 				>
 			</div>
-			<div class="flex items-center justify-center gap-5">
-				<a href="/">
-					<button
-						class="h-7 w-20 select-none rounded-full bg-green-600 duration-200 hover:scale-110 hover:cursor-pointer hover:bg-green-500 active:border-green-500 active:bg-green-600"
-						>Login</button
-					>
-				</a>
-				<a href="/cadastro">
-					<button
-						class="h-7 w-20 select-none rounded-full bg-blue-600 duration-200 hover:scale-110 hover:cursor-pointer hover:bg-blue-500 active:bg-blue-600"
-						href="/cadastro">Cadastrar</button
-					>
-				</a>
-			</div>
-			<p class="text-sm text-gray-300">
-				não lembra a senha? <a href="/login" class="text-shadow-2xs text-blue-600 hover:underline"
+			<p class="text-sm">
+				não lembra a senha? <a
+					href="/login"
+					class="text-shadow-lg text-shadow-white/10 text-blue-600 hover:underline"
 					>Redefinir senha</a
 				>
 			</p>

@@ -6,12 +6,7 @@
 		'https://studiosol-a.akamaihd.net/tb/letras-blog/wp-content/uploads/2019/04/5a78f4c-shows_internacionais.jpg',
 		'https://tse4.mm.bing.net/th/id/OIP.9p6SQjpCbKT0REfObS1WQwHaEo?cb=iwc2&w=1600&h=1000&rs=1&pid=ImgDetMain'
 	];
-	let num = $state(0);
-
-	let email = $state()
-	let senha = $state()
-	let repetirSenha = $state()
-
+	let num = 0;
 	setInterval(() => {
 		if (num === src.length - 1) {
 			return (num = 0);
@@ -19,60 +14,72 @@
 		num++;
 	}, 10000);
 
+	async function enviaForm() {}
 </script>
+
+<svelte:head>
+	<link rel="preload" href={src[num]} />
+</svelte:head>
 
 <Background />
 
 <main class="flex h-screen w-screen items-center justify-center">
 	<section
-		class="w-4xl max-w-screen mx-4 flex h-[600px] max-h-screen rounded border border-gray-900 bg-gray-950 shadow-sm shadow-black"
+		class="w-4xl max-w-screen mx-4 flex h-[600px] max-h-screen rounded border border-blue-600/50 bg-gray-950"
 	>
-		<div
-			rel="preload"
-			as="img"
-			class="flex-2/6 block h-full bg-gray-900 bg-cover bg-center"
+		<section
+			class="flex-2/6 block h-full bg-cover bg-center"
 			style="background-image: url({src[num]});"
 		>
 			<div
-				class="relative bottom-0 left-0 right-0 top-0 h-full w-full bg-gray-950/50 transition-colors duration-200 hover:bg-gray-950/30"
+				class="relative bottom-0 left-0 right-0 top-0 h-full w-full bg-gray-950/20 transition-colors duration-200 hover:bg-gray-950/10"
 			>
 				<h2
 					class="text-shadow-lg pt-10 text-center font-sans text-2xl font-semibold text-white hover:underline"
 				>
-					Cadastro
+					Login
 				</h2>
 			</div>
-		</div>
+		</section>
 		<div
-			class="flex-2/4 flex h-full flex-col items-center justify-center gap-4 bg-neutral-950/80 text-white"
+			class="flex-2/4 z-10 flex h-full flex-col items-center justify-center gap-4 bg-neutral-950/80 text-white"
 		>
-			<p class="text-center capitalize text-gray-200">Criar uma conta</p>
-			<form action="/" method="post">
+			<p class="text-center text-lg capitalize">Entrar com uma conta</p>
+			<form action={enviaForm} class="flex gap-4 justify-center items-center flex-col w-full">
+				<label for="senha" class="-mb-4 w-[60%]">Email:</label>
 				<input
 					type="email"
-					name="Email"
-					id="email"
-					placeholder="Email"
-					bind:value={email}
-					class="w-[60%] border-b bg-gray-900/20 px-4 py-2 outline-none placeholder:text-lg focus:bg-blue-950"
+					name="usuario"
+					id="usuario"
+					placeholder="usuario@email.com"
+					class="w-[60%] border border-white/30 border-b-white bg-gray-900/20 px-4 py-1 outline-none focus:bg-blue-950"
 				/>
+
+				<label for="senha" class="-mb-4 w-[60%]">Senha:</label>
 				<input
 					type="password"
 					name="senha"
 					id="senha"
-					placeholder="Senha"
-					bind:value={senha}
-					class=": w-[60%] border-b bg-gray-900/20 px-4 py-2 outline-none placeholder:text-lg focus:bg-blue-950"
+					placeholder="sua senha"
+					class=": w-[60%] border border-b border-white/30 border-b-white bg-gray-900/20 px-4 py-1 outline-none focus:bg-blue-950"
 				/>
+				<label for="repetirSenha" class="-mb-4 w-[60%]">Repetir Senha:</label>
 				<input
 					type="password"
-					name="senha-repetir"
-					id="senha"
-					placeholder="Repetir senha"
-					bind:value={repetirSenha}
-					class=": w-[60%] border-b bg-gray-900/20 px-4 py-2 outline-none placeholder:text-lg focus:bg-blue-950"
+					name="repetirSenha"
+					id="repetirSenha"
+					placeholder="repetir senha"
+					class=": w-[60%] border border-b border-white/30 border-b-white bg-gray-900/20 px-4 py-1 outline-none focus:bg-blue-950"
 				/>
 			</form>
+
+			<hr class="w-[80%] bg-white opacity-20" />
+			<button
+				class="w-[60%] cursor-pointer border border-blue-400 py-1 font-bold text-blue-400 duration-75 hover:bg-blue-500/20"
+			>
+				Cadastrar-se
+			</button>
+
 			<div class="mt-1 flex gap-3">
 				<a href="/Login"
 					><img
@@ -96,17 +103,11 @@
 					/></a
 				>
 			</div>
-			<div class="flex items-center justify-center gap-5">
-				<a href="/">
-					<button type="submit"
-						class="h-7 w-20 select-none rounded-full bg-green-600 duration-200 hover:scale-110 hover:cursor-pointer hover:bg-green-500 active:bg-green-600"
-						href="/cadastro">Cadastrar</button
-					>
-				</a>
-			</div>
-			<p class="text-sm text-gray-300">
-				já possui uma conta? <a href="/login" class="text-shadow-2xs text-blue-600 hover:underline"
-					>Login</a
+			<p class="text-sm">
+				Já possui uma conta? <a
+					href="/login"
+					class="text-shadow-lg text-shadow-white/10 text-blue-600 hover:underline"
+					>Fazer o login</a
 				>
 			</p>
 		</div>
