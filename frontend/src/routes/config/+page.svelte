@@ -15,39 +15,42 @@
 	<section class="flex flex-col items-center">
 		<a
 			href="/config/"
-			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-gray-400/50 active:bg-blue-950"
+			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-blue-600 active:bg-blue-950"
 			>Geral</a
 		>
 		<a
 			href="/config/acessiblidade"
-			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-gray-400/50 active:bg-blue-950"
+			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-blue-600 active:bg-blue-950"
 			>Acessibilidade</a
 		>
 		<a
 			href="/config/interface"
-			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-gray-400/50 active:bg-blue-950"
+			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-blue-600 active:bg-blue-950"
 			>Interface</a
 		>
 		<a
 			href="/config/conta"
-			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-gray-400/50 active:bg-blue-950"
+			class="duration-50 m-1 w-[95%] rounded-full border border-white/0 px-5 py-3 text-center hover:border-blue-500/60 hover:bg-blue-600 active:bg-blue-950"
 			>Conta</a
 		>
 	</section>
 </aside>
 <main class="absolute left-0 right-0 mt-1 pl-56">
 	<section
-		class="m-10 my-20 w-fit rounded-xl border border-white bg-gray-600 p-5 text-white shadow shadow-black"
+		class="mt-10 w-fit rounded-xl p-5 text-white"
 	>
 		<h2 class="text-5xl font-semibold">Configurações</h2>
-		<p class="w-2xl mt-3 inline-block">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus autem, obcaecati possimus
-			molestiae nihil pariatur nostrum inventore sed perferendis qui voluptas quis architecto
-			expedita? Enim odit nostrum esse facilis rerum?
-		</p>
+
+		<div class='*:px-4 *:py-1 *:bg-zinc-900 *:rounded-full *:border *:border-white/40 mt-5 *:hover:bg-blue-600 *:duration-75 *:w-24'>
+			<a href="/geral">Geral</a>
+			<a href="/geral">Acessibilidade</a>
+			<a href="/geral">Interface</a>
+			<a href="/geral">Conta</a>
+		</div>
 	</section>
 
-	<section class="m-10 my-20 h-screen text-white">
+	<hr class="bg-zinc-900">
+	<section class="m-10 h-screen text-white">
 		<h3 class="text-2xl font-semibold">Temas</h3>
 		<p class="w-xl mt-3 inline-block">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus autem, obcaecati possimus
