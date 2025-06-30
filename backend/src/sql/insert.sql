@@ -1,26 +1,10 @@
 INSERT INTO tons (tom) VALUES
-('C maior'), ('C# maior'), ('Db maior'), ('D maior'), 
-('D# maior'), ('Eb maior'), ('E maior'), ('F maior'),
-('F# maior'), ('Gb maior'), ('G maior'), ('G# maior'),
-('Ab maior'), ('A maior'), ('A# maior'), ('Bb maior'),
-('B maior'), ('Cb maior'),
-
-('A menor'), ('A# menor'), ('Bb menor'), ('B menor'),
-('C menor'), ('C# menor'), ('D menor'), ('D# menor'),
-('Eb menor'), ('E menor'), ('F menor'), ('F# menor'),
-('G menor'), ('G# menor'), ('Ab menor'),
-
-('A menor harmônico'), ('A# menor harmônico'), ('Bb menor harmônico'),
-('B menor harmônico'), ('C menor harmônico'), ('C# menor harmônico'),
-('D menor harmônico'), ('D# menor harmônico'), ('Eb menor harmônico'),
-('E menor harmônico'), ('F menor harmônico'), ('F# menor harmônico'),
-('G menor harmônico'), ('G# menor harmônico'), ('Ab menor harmônico'),
-
-('A menor melódico'), ('A# menor melódico'), ('Bb menor melódico'),
-('B menor melódico'), ('C menor melódico'), ('C# menor melódico'),
-('D menor melódico'), ('D# menor melódico'), ('Eb menor melódico'),
-('E menor melódico'), ('F menor melódico'), ('F# menor melódico'),
-('G menor melódico'), ('G# menor melódico'), ('Ab menor melódico');
+('A'), ('Bb'), ('B'), ('C'), 
+('Db'), ('D'), ('Eb'), ('E'),
+('F'), ('F#'), ('G '), ('Ab'),
+('A m'), ('Bb m'), ('B m'), ('C m'), 
+('Db m'), ('D m'), ('Eb m'), ('E m'),
+('F m'), ('F# m'), ('G m'), ('Ab m');
 
 SELECT `tons`.`id`,
     `tons`.`tom`
@@ -39,16 +23,16 @@ INSERT INTO album_artistas (album_id, artista_id) VALUES
 (2, 2);
 
 INSERT INTO musicas (numero_faixa, nome, bpm, compasso, duracao, tom_id, album_id) VALUES 
-(1, 'Polly', 121, '4/4', 154200, 11, 1),
-(2, 'Come As You Are', 120, '4/4', 202800, 28, 1),
-(3, 'Breed', 158, '4/4', 182400, 9, 1),
-(4, 'In Bloom', 157, '4/4', 249000, 12, 1),
-(5, 'On a Plain', 133, '4/4', 189600, 4, 1),
-(6, 'Drain You', 133, '4/4', 205800, 16, 1),
-(7, 'Lithium', 123, '4/4', 250200, 12, 1),
-(8, 'Something In The Way', 105, '4/4', 211200, 30, 1),
-(9, 'Endless, Nameless', 132, '4/4', 385200, 12, 1),
-(10, 'Back to the old House', 104, '4/4', 183600, 4, 2);
+(1, 'Polly', 121, '4/4', 154200, 20, 1),
+(2, 'Come As You Are', 120, '4/4', 202800, 20, 1),
+(3, 'Breed', 158, '4/4', 182400, 22, 1),
+(4, 'In Bloom', 157, '4/4', 249000, 14, 1),
+(5, 'On a Plain', 133, '4/4', 189600, 6, 1),
+(6, 'Drain You', 133, '4/4', 205800, 2, 1),
+(7, 'Lithium', 123, '4/4', 250200, 6, 1),
+(8, 'Something In The Way', 105, '4/4', 211200, 20, 1),
+(9, 'Endless, Nameless', 132, '4/4', 385200, 20, 1),
+(10, 'Back to the old House', 104, '4/4', 183600, 6 , 2);
 
 INSERT INTO usuarios (email, senha) VALUES 
 ('123@exemplo.com', SHA2('senha123', 256)),
