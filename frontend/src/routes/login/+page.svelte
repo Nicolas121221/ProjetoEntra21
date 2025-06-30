@@ -1,4 +1,5 @@
 <script>
+	import { redirect } from '@sveltejs/kit';
 	import Background from '$lib/components/Background.svelte';
 	let src = [
 		'https://www.festivalpro.com/articles/1568.png',
@@ -13,13 +14,14 @@
 		}
 		num++;
 	}, 10000);
-
-	async function enviaForm() {}
+	function enviaForm() {
+		redirect(200, '/')
+	}
 </script>
 
 <svelte:head>
 	{#each src as href}
-	<link rel="preload" as="image" {href} />
+		<link rel="preload" as="image" {href} />
 	{/each}
 </svelte:head>
 
@@ -45,7 +47,7 @@
 			class="flex-2/4 z-10 flex h-full flex-col items-center justify-center gap-4 bg-neutral-950/80 text-white"
 		>
 			<p class="text-center text-lg capitalize">Entrar com uma conta</p>
-			<form action={enviaForm} class="flex w-full flex-col items-center justify-center gap-4">
+			<form action="/" class="flex w-full flex-col items-center justify-center gap-4">
 				<label for="senha" class="-mb-4 w-[60%]">Email:</label>
 				<input
 					autocomplete="email"
