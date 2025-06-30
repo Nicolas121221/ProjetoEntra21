@@ -7,6 +7,20 @@
 	let chevron = $state(false);
 	let close = $state(false);
 
+	function mmssToMilliseconds(input) {
+		const [min, sec] = input.split(':').map(Number);
+		return (duracao = (min * 60 + sec) * 1000);
+	}
+
+	async function saveChanges() {
+		edit = false;
+		try {
+			const res = fetch();
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
 	let {
 		num,
 		musica,
@@ -16,11 +30,11 @@
 		duracao,
 		data,
 		data2,
-		dataAlbum,
 		src,
 		album,
 		artista,
-		artistaUrl
+		artistaUrl,
+		compasso
 	} = $props();
 
 	function formataData(data) {
@@ -46,13 +60,13 @@
 
 	async function getChords() {
 		try {
-			if (!musica || !artista) return response = 'Sem informações para buscar a cifra';
+			if (!musica || !artista) return (response = 'Sem informações para buscar a cifra');
 
 			let data = await fetch(`http://localhost:3000/cifra/${artista}/${musica}`);
 			if (data) {
-				return response = await data.json()
+				return (response = await data.json());
 			} else {
-				return response = 'Não foi possível encontrar a cifra'
+				return (response = 'Não foi possível encontrar a cifra');
 			}
 		} catch (error) {
 			console.error(error);
@@ -60,14 +74,14 @@
 		}
 	}
 
-	onMount(getChords);
+	let edit = $state(false);
 </script>
 
 <div
 	class="h-13 shadow-xs mt-0.5 flex items-center justify-between gap-1 bg-zinc-700 text-white shadow-blue-600/20 {close
 		? 'hidden'
 		: ''}"
-		id="el"
+	id="el"
 >
 	<div class="flex h-full w-10 items-center justify-center border-r-2 border-r-zinc-900 text-xl">
 		{num}
@@ -112,16 +126,17 @@
 	<div class="flex h-full w-[13%] items-center justify-evenly text-lg">
 		<button
 			onclick={() => {
+				if (!response) getChords();
 				chevron = !chevron;
 			}}
-			class='{chevron ? 'rotate-z-90' : 'rotate-0'} duration-75'
+			class="{chevron ? 'rotate-z-90' : 'rotate-0'} duration-75"
 		>
 			<Chevron />
 		</button>
 		<button class="size-6" onclick={() => (close = !close)}>
 			<Close />
 		</button>
-		<button>
+		<button onclick={() => (edit = !edit)}>
 			<Elipsis />
 		</button>
 	</div>
@@ -129,16 +144,17 @@
 <div class="{chevron ? 'h-[75vh]' : 'h-0'} w-full bg-zinc-700/90 transition-all duration-300">
 	{#if response}
 		<section
-			class="font-ligth h-[75vh] w-full overflow-y-scroll p-5 font-mono text-sm text-white grid-cols-2 grid gap-x-6 gap-y-0 {!chevron
+			class="font-ligth grid h-[75vh] w-full grid-cols-2 gap-x-6 gap-y-0 overflow-y-scroll p-5 font-mono text-sm text-white {!chevron
 				? 'hidden'
-				: ''} ">
+				: ''} "
+		>
 			{#each response as res}
-					<article >
+				<article>
 					<h6>[{@html res.title}]</h6>
 					<pre>{@html res.content}</pre>
 				</article>
 			{/each}
-	</section>
+		</section>
 	{:else}
 		<section class="mx-auto pt-20 {!chevron ? 'hidden' : ''} ">
 			<div
@@ -148,3 +164,162 @@
 		</section>
 	{/if}
 </div>
+
+{#if edit}
+	<section
+		class="fixed bottom-0 left-0 right-0 top-0 z-40 flex h-screen w-screen items-center justify-center bg-zinc-950/50"
+	>
+		<div class="w-5xl h-[700px] rounded-xl border border-blue-400/50 bg-zinc-950 p-10 text-white">
+			<div class="mb-5 flex w-full items-center justify-between">
+				<h3 class="ml-4 text-2xl font-bold capitalize text-white">Editor</h3>
+				<button
+					onclick={() => (edit = !edit)}
+					class="-ml-8 inline h-8 w-8 text-right hover:bg-red-600"
+				>
+					<Close />
+				</button>
+			</div>
+
+			<hr class="mb-5 w-full bg-white opacity-30" />
+			<form action="" class="grid h-[60%] grid-cols-3">
+				<div>
+					<label for="musica">Música: </label><br />
+					<input
+						type="text"
+						name="musica"
+						bind:value={musica}
+						class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+					/>
+				</div>
+
+				<div>
+					<label for="album">Album: </label><br />
+					<input
+						type="text"
+						name="musica"
+						bind:value={album}
+						class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+					/>
+				</div>
+
+				<div>
+					<label for="artista">Artista: </label><br />
+					<input
+						type="text"
+						name="musica"
+						bind:value={artista}
+						class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+					/>
+				</div>
+				<div>
+					<label for="compasso">Compasso: </label><br />
+					<select
+						name="compasso"
+						bind:value={compasso}
+						class="rounded-xs w-[60%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+					>
+						<option value="12/8">12/8</option>
+						<option value="9/8">9/8</option>
+						<option value="7/8">7/8</option>
+						<option value="6/8">6/8</option>
+						<option value="5/8">5/8</option>
+						<option value="3/8">3/8</option>
+						<option value="6/4">6/4</option>
+						<option value="5/4">5/4</option>
+						<option value="4/4">4/4</option>
+						<option value="3/4">3/4</option>
+						<option value="2/4">2/4</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="bpm">bpm: </label><br />
+					<input
+						type="number"
+						bind:value={bpm}
+						onchange={() => {
+							if (!bpm) return (bpm = 60);
+							if (typeof bpm === 'string') return (bpm = 60);
+							if (bpm < 40) return (bpm = 40);
+							if (bpm >= 400) return (bpm = 400);
+						}}
+						class="rounded-xs w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+						min="21"
+						pattern="\d*"
+					/>
+				</div>
+
+				<div>
+					<label for="duracao">Duração: </label><br />
+					<input
+						class="rounded-xs w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+						type="text"
+						id="duration"
+						name="duracao"
+						bind:value={duracao}
+						placeholder="03:25"
+						pattern="^\d{(1, 2)}:[0-5]\d$"
+						onchange={mmssToMilliseconds(duracao)}
+					/>
+				</div>
+				<div>
+					<label for="afinacao">Afinação: </label><br />
+					<input
+						name="afinacao"
+						type="text"
+						bind:value={afinacao}
+						class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+					/>
+				</div>
+				<div>
+					<label for="data">Data de lançamento: </label><br />
+					<input
+						name="afinacao"
+						type="date"
+						bind:value={data}
+						class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+					/>
+				</div>
+				<div>
+					<label for="tom">Tom: </label><br />
+					<select
+						name="tom"
+						class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+						bind:value={tom}
+					>
+						<option value="A">A</option>
+						<option value="Bb">Bb</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="Db">Db</option>
+						<option value="D">D</option>
+						<option value="Eb">Eb</option>
+						<option value="E">E</option>
+						<option value="F">F</option>
+						<option value="F#">F#</option>
+						<option value="G">G</option>
+						<option value="Ab">Ab</option>
+						<option value="Am">Am</option>
+						<option value="Bbm">Bbm</option>
+						<option value="Bm">Bm</option>
+						<option value="Cm">Cm</option>
+						<option value="Dbm">Dbm</option>
+						<option value="Dm">Dm</option>
+						<option value="Ebm">Ebm</option>
+						<option value="Em">Em</option>
+						<option value="Fm">Fm</option>
+						<option value="F#m">F#m</option>
+						<option value="Gm">Gm</option>
+						<option value="Abm">Abm</option>
+					</select>
+				</div>
+			</form>
+			<button
+				class="mt-20 cursor-pointer rounded-xl border border-green-400 px-4 text-green-400 hover:bg-green-800"
+				onclick={saveChanges}
+			>
+				<p>Salvar alterações</p>
+			</button>
+		</div>
+	</section>
+{/if}

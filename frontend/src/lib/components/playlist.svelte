@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="m-2 mb-0 mr-0 h-[98.5%] w-full border border-blue-500/60 rounded bg-zinc-950/80 p-4">
+<div class="m-2 mb-0 mr-0 h-[98.5%] w-full border border-blue-500/60 rounded bg-zinc-950/90 p-4">
 	<div class="flex">
 		<h2
 			class="mx-auto text-center text-xl text-white duration-100 hover:text-blue-400 hover:underline"
@@ -67,6 +67,7 @@
 					album={song.album_nome}
 					artista={song.artistas_nomes}
 					artistaUrl={song.artistas_fotos_urls}
+					compasso={song.compasso}
 				/>
 			{/each}
 			</section>
