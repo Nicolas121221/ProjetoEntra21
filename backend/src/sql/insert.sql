@@ -2,9 +2,9 @@ INSERT INTO tons (tom) VALUES
 ('A'), ('Bb'), ('B'), ('C'), 
 ('Db'), ('D'), ('Eb'), ('E'),
 ('F'), ('F#'), ('G '), ('Ab'),
-('A m'), ('Bb m'), ('B m'), ('C m'), 
-('Db m'), ('D m'), ('Eb m'), ('E m'),
-('F m'), ('F# m'), ('G m'), ('Ab m');
+('Am'), ('Bbm'), ('Bm'), ('Cm'), 
+('Dbm'), ('Dm'), ('Ebm'), ('Em'),
+('Fm'), ('F#m'), ('Gm'), ('Abm');
 
 SELECT `tons`.`id`,
     `tons`.`tom`
