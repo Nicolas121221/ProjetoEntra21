@@ -7,11 +7,6 @@
 	let chevron = $state(false);
 	let close = $state(false);
 
-	function mmssToMilliseconds(input) {
-		const [min, sec] = input.split(':').map(Number);
-		return (duracao = (min * 60 + sec) * 1000);
-	}
-
 	async function saveChanges() {
 		edit = false;
 		try {
@@ -144,7 +139,7 @@
 <div class="{chevron ? 'h-[75vh]' : 'h-0'} w-full bg-zinc-700/90 transition-all duration-300">
 	{#if response}
 		<section
-			class="font-ligth grid h-[75vh] w-full grid-cols-2 gap-x-6 gap-y-0 overflow-y-scroll p-5 font-mono text-sm text-white {!chevron
+			class="font-ligth h-[75vh] w-full flex flex-col overflow-y-scroll p-5 font-mono text-sm text-white {!chevron
 				? 'hidden'
 				: ''} "
 		>
@@ -253,12 +248,12 @@
 					<label for="duracao">Duração: </label><br />
 					<input
 						class="rounded-xs w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
-						type="text"
+						type="time"
 						id="duration"
 						name="duracao"
 						bind:value={duracao}
-						placeholder="03:25"
-						pattern="^\d{(1, 2)}:[0-5]\d$"
+						min="00:00"
+						max="59:59"
 						onchange={mmssToMilliseconds(duracao)}
 					/>
 				</div>
@@ -315,10 +310,18 @@
 				</div>
 			</form>
 			<button
-				class="mt-20 cursor-pointer rounded-xl border border-green-400 px-4 text-green-400 hover:bg-green-800"
+				class="mr-3 mt-20 inline-block cursor-pointer rounded-full border border-green-400 px-4 py-1 text-green-400 hover:bg-green-800"
 				onclick={saveChanges}
 			>
 				<p>Salvar alterações</p>
+			</button>
+			<button
+				class=" inline-block cursor-pointer rounded-full border border-red-400 px-4 py-1 text-red-400 hover:bg-red-800"
+				onclick={() => {
+					edit = !edit;
+				}}
+			>
+				<p>Sair</p>
 			</button>
 		</div>
 	</section>

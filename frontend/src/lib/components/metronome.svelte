@@ -125,9 +125,6 @@
 				onchange={calculaTempo}
 				class="w-[50%] border border-gray-700 bg-gray-900 text-center"
 			>
-				<option value="12/8">12/8</option>
-				<option value="9/8">9/8</option>
-				<option value="7/8">7/8</option>
 				<option value="6/8">6/8</option>
 				<option value="5/8">5/8</option>
 				<option value="3/8">3/8</option>

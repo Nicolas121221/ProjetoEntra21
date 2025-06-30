@@ -2,7 +2,6 @@
 	import Hamburguer from '$lib/svg/HamburguerMenu.svelte';
 	import Magnifier from '$lib/svg/Magnifier.svelte';
 	import Microphone from '$lib/svg/Microphone.svelte';
-	import Logo from '$lib/svg/Logo.svelte';
 	import MenuButton from '$lib/components/MenuButton.svelte';
 	import Close from '$lib/svg/Close.svelte';
 
@@ -49,9 +48,11 @@
 			<Microphone />
 		</div>
 
-		<div class="text-wh flex gap-4 text-lg text-white">
+		<div class="text-wh flex gap-1 text-lg text-white">
 			<h1 class="font-bold">Rhythm</h1>
-			<Logo />
+			<a href="/login" class="h-full block justify-center items-center">
+				<img src="/favicon.png" class="size-7 animate-spin" alt="Logo do Rhythm" />
+			</a>
 		</div>
 	</nav>
 </header>
@@ -62,7 +63,7 @@
 		: 'opacity-100'}"
 >
 	<div
-		class="w-2xl transform z-10 h-[450px] bg-zinc-950 p-4 border-blue-500/60 rounded-lg border transition-all duration-300 {none
+		class="w-2xl z-10 h-[450px] transform rounded-lg border border-blue-500/60 bg-zinc-950 p-4 transition-all duration-300 {none
 			? '-translate-y-20 opacity-0'
 			: 'translate-y-0 opacity-100'}"
 	>
@@ -91,7 +92,7 @@
 		: 'opacity-100'}"
 >
 	<div
-		class="w-2xl border-blue-500/60 rounded-lg border z-10 h-[450px] transform bg-zinc-950 p-4 transition-all duration-300 {!search
+		class="w-2xl z-10 h-[450px] transform rounded-lg border border-blue-500/60 bg-zinc-950 p-4 transition-all duration-300 {!search
 			? '-translate-y-20 opacity-0'
 			: 'translate-y-0 opacity-100'}"
 	>
@@ -109,10 +110,12 @@
 				{#each data as song}
 					<a
 						class="flex w-full cursor-pointer items-center gap-3 border-x-0 border-white/5 p-2 capitalize text-white duration-150 hover:bg-zinc-800"
-						href="/{song.id}/musica"
-						onclick={()=>{search = ''}}
+						href="/musica/{song.id}"
+						onclick={() => {
+							search = '';
+						}}
 					>
-						<img src={song.album.images[0].url} alt=" " class="size-10" />
+						<img src={song.album.images[0].url} alt="" class="size-10" />
 						<h5 class="font-semibold">
 							{song.name} -
 							<span class="text-xs font-thin opacity-50"
