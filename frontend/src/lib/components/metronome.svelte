@@ -94,7 +94,7 @@
 	</div>
 
 	<div>
-		<div class="rounded mx-auto mb-10 h-96 w-1 bg-blue-500" id="pointer" {style}></div>
+		<div class="rounded mx-auto mb-10 h-96 w-1 bg-blue-400" id="pointer" {style}></div>
 	</div>
 
 	<div

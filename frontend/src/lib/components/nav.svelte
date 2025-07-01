@@ -1,5 +1,6 @@
 <script>
 	import Hamburguer from '$lib/svg/HamburguerMenu.svelte';
+	import Search from './Search.svelte';
 	import Magnifier from '$lib/svg/Magnifier.svelte';
 	import Microphone from '$lib/svg/Microphone.svelte';
 	import MenuButton from '$lib/components/MenuButton.svelte';
@@ -7,8 +8,9 @@
 
 	let none = $state(true);
 
-	let data = $state();
 	let search = $state();
+	let data = $state();
+
 	async function fetchSearch() {
 		try {
 			data = '';
@@ -50,7 +52,7 @@
 
 		<div class="text-wh flex gap-1 text-lg text-white">
 			<h1 class="font-bold">Rhythm</h1>
-			<a href="/login" class="h-full block justify-center items-center">
+			<a href="/login" class="block h-full items-center justify-center">
 				<img src="/favicon.png" class="size-7 animate-spin" alt="Logo do Rhythm" />
 			</a>
 		</div>
@@ -86,53 +88,4 @@
 	</div>
 </div>
 
-<div
-	class="fixed inset-0 z-10 flex h-[100dvh] w-[100dvw] items-center justify-center bg-black/30 transition-opacity duration-300 {!search
-		? 'pointer-events-none opacity-0'
-		: 'opacity-100'}"
->
-	<div
-		class="w-2xl z-10 h-[450px] transform rounded-lg border border-blue-500/60 bg-zinc-950 p-4 transition-all duration-300 {!search
-			? '-translate-y-20 opacity-0'
-			: 'translate-y-0 opacity-100'}"
-	>
-		<div class="flex items-center">
-			<h2 class="mx-auto text-center font-bold capitalize text-white">Pesquisar</h2>
-			<button
-				onclick={() => (search = '')}
-				class="-ml-8 inline h-8 w-8 text-right hover:bg-red-600"
-			>
-				<Close />
-			</button>
-		</div>
-		<section class="h-[90%] w-full overflow-y-scroll">
-			{#if data}
-				{#each data as song}
-					<a
-						class="flex w-full cursor-pointer items-center gap-3 border-x-0 border-white/5 p-2 capitalize text-white duration-150 hover:bg-zinc-800"
-						href="/musica/{song.id}"
-						onclick={() => {
-							search = '';
-						}}
-					>
-						<img src={song.album.images[0].url} alt="" class="size-10" />
-						<h5 class="font-semibold">
-							{song.name} -
-							<span class="text-xs font-thin opacity-50"
-								>{song.album.name + ' ' + song.album.release_date}</span
-							>
-						</h5>
-						<div class="text-sm font-normal">{song.artists[0].name}</div>
-					</a>
-				{/each}
-			{:else}
-				<section class="mx-auto mt-20">
-					<div
-						class="mx-auto size-7 animate-spin rounded-full border-2 border-white/30 border-b-blue-700"
-					></div>
-					<p class="text-center text-2xl text-white">Carregando</p>
-				</section>
-			{/if}
-		</section>
-	</div>
-</div>
+<Search {search} {data} />
