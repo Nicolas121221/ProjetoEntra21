@@ -129,3 +129,22 @@ export const getSpotifyArtistAlbumById = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+export const getAlbumById = async (req, res) => {
+  const id = req.params.id;
+  const userId = 1;
+  try {
+    const data = await axios.get(`http://localhost:3000/spotifyUser/${userId}`);
+    const response = await axios.get(`https://api.spotify.com/v1/albums/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${data.data[0].access_token}`,
+        },
+      }
+    );
+
+    res.status(200).send(response.data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
