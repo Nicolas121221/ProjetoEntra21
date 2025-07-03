@@ -13,6 +13,7 @@
             data = "";
             chords = "";
             albuns = "";
+            artist = "";
             let res = await fetch(
                 `http://localhost:3000/spotify/song/${page.params.id}`
             );
@@ -58,7 +59,7 @@
     </aside>
     <main class="h-screen w-full pt-10 text-white">
         <section class="ml-70 h-90 flex pt-20">
-            <div class=" pl-40">
+            <div class="pl-40">
                 <img
                     src={data.album.images[0].url}
                     alt=""
@@ -71,7 +72,7 @@
                 />
             </div>
             <div class="text-shadow-xs text-shadow-black pl-10 pt-24">
-                <h5 class="text-2xl">{data.album.name}</h5>
+                <h5 class="text-2xl"><a href="/album/{data.album.id}">{data.album.name}</a></h5>
                 <div class="mt-3 flex gap-2">
                     <img
                         src={artist.images[0].url}
@@ -87,7 +88,7 @@
                 </div>
                 <h1 class="text-5xl font-bold">{data.name}</h1>
                 <div
-                    class="absolute right-20 gap-2 -mt-5 flex items-center justify-center"
+                    class="absolute right-40 gap-2 -mt-5 flex items-center justify-center"
                 >
                     <a href={artist.external_urls.spotify} target="_blank">
                         <img
@@ -106,7 +107,7 @@
                 </div>
             </div>
         </section>
-        <section class="mt-5 ml-70 from-gray-950 to-black/5 w-full">
+        <section class="mt-5 ml-70 from-gray-950 to-black/5">
             <div class="ml-40">
                 <h3 class="text-xl mb-5">Artista</h3>
                 <div class="flex items-center gap-10">
@@ -124,11 +125,11 @@
 
                 <div class="mt-5">
                     <h4 class="text-xl mb-5">Álbuns</h4>
-                    <div class="flex gap-2 w-[90%] overflow-x-auto">
+                    <div class="flex gap-2 overflow-x-auto max-w-8xl">
                         {#each albuns.items as album}
                             <a
                                 class="flex flex-col bg-black/40 hover:bg-black/50 p-3 rounded-sm shadow-2xl/10 shadow-white duration-75"
-                                href="/"
+                                href="/album/{album.id}"
                             >
                                 <img
                                     src={album.images[0].url}
