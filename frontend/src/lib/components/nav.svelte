@@ -80,9 +80,9 @@
 		</div>
 
 		<menu class="mt-5 flex h-[80%] flex-col items-center justify-center gap-6">
+			<MenuButton title="Home" href="/" />
 			<MenuButton title="Playlists" href="/playlist" />
 			<MenuButton title="Configuração" href="/config" />
-			<MenuButton title="FAQ" href="/" />
 			<MenuButton title="Saiba Mais" href="https://github.com/Nicolas121221/ProjetoEntra21" />
 		</menu>
 	</div>
