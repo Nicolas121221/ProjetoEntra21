@@ -19,7 +19,7 @@
 <div class="m-2 mb-0 mr-0 h-[98.5%] w-full border border-blue-500/60 rounded bg-zinc-950/90 p-4">
 	<div class="flex">
 		<h2
-			class="mx-auto text-center text-xl text-white duration-100 hover:text-blue-400 hover:underline"
+			class="mx-auto text-center text-xl text-white duration-100"
 		>
 			Playlists
 		</h2>
@@ -70,7 +70,7 @@
 					compasso={song.compasso}
 				/>
 				{/each}
-				<button class="text-lg text-white border border-white/70 w-full h-15 rounded mt-1 hover:bg-white/10 cursor-pointer flex justify-center items-center active:bg-gray-300/50"><span class="text-4xl -mt-2 mr-2">&plus;</span><p>Adicionar a playlist</p></button>
+				<button class="text-lg text-white border border-white/50 w-full h-13 rounded mt-1 hover:bg-white/10 cursor-pointer flex justify-center items-center active:bg-gray-300/50"><span class="text-4xl -mt-2 mr-2">&plus;</span><p>Adicionar a playlist</p></button>
 			</section>
 		{/if}
 	</div>

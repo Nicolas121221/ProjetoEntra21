@@ -48,6 +48,7 @@
 			if (functions.stop) {
 				functions.stop = false;
 				style = '';
+				if (counter > tempoArray[0]) counter = 1;
 				nums[counter-1].tempoFocus = false;
 				return;
 			}
