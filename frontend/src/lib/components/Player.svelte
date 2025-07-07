@@ -13,13 +13,12 @@
 		'2:34'
 	];
 
-	let style = $state('width: 0px')
-	functions.stop?style='animation: progress-bar linear 154200ms': style='width: 0px'
+	let paused = $state(false);
 
 </script>
 
 <div class="w-xs relative -z-0 mx-auto -mb-0.5 mt-10 h-1 rounded-2xl bg-gray-400">
-	<div class="rounded-2xs h-1 bg-blue-700" {style}></div>
+	<div class="rounded-2xs h-1 bg-blue-700" style="{paused?'animation: progress-bar linear 154200ms':'width: 0px'}" ></div>
 </div>
 <section
 	class="w-sm relative top-0 mx-auto flex h-12 items-center justify-center rounded-full bg-gray-900 shadow-sm shadow-gray-950"
@@ -36,7 +35,7 @@
 	</div>
 	<div class="flex-1/3 flex items-center justify-center">
 		<Backward />
-		<Pause functions={functions}/>
+		<Pause functions={functions} {paused}/>
 		<Forward />
 	</div>
 	<div class="flex-1/3 flex items-center justify-center gap-5">

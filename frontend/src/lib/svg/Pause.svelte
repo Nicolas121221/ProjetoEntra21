@@ -1,6 +1,5 @@
 <script>
-	let { functions } = $props();
-	let paused = $state(false);
+	let { functions, paused = $bindable()} = $props();
 
 	function changeMetronome() {
 		paused = !paused;
@@ -9,9 +8,7 @@
 	}
 </script>
 
-<button onclick={changeMetronome} class="cursor-pointer" onkeyup={(e)=>{
-	if(e.code === 'space') changeMetronome()
-}}>
+<button onclick={changeMetronome} class="cursor-pointer">
 	{#if !paused}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

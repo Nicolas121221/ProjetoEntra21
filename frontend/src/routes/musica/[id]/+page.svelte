@@ -4,30 +4,34 @@
     import Nav from "$lib/components/Nav.svelte";
     import { onMount } from "svelte";
 
+    let {data} = $props()
+
+
     let artist = $state();
-    let data = $state();
+    let objectData = $state();
     let chords = $state("");
     let albuns = $state("a");
     onMount(async () => {
         try {
-            data = "";
+            objectData = "";
             chords = "";
             albuns = "";
             artist = "";
+
             let res = await fetch(
                 `http://localhost:3000/spotify/song/${page.params.id}`
             );
-            if (res) data = await res.json();
+            if (res) objectData = await res.json();
             res = await fetch(
-                `http://localhost:3000/spotify/artist/${data.artists[0].id}`
+                `http://localhost:3000/spotify/artist/${objectData.artists[0].id}`
             );
             artist = await res.json();
             const cifra = await fetch(
-                `http://localhost:3000/cifra/${data.artists[0].name}/${data.name}`
+                `http://localhost:3000/cifra/${objectData.artists[0].name}/${objectData.name}`
             );
 
             res = await fetch(
-                `http://localhost:3000/spotify/artist/${data.artists[0].id}/album`
+                `http://localhost:3000/spotify/artist/${objectData.artists[0].id}/album`
             );
             albuns = await res.json();
 
@@ -42,12 +46,17 @@
             console.error(e);
         }
     });
+
+    function formataData(objectData) {
+        const objectDataObj = new Date(objectData);
+        return objectDataObj.toLocaleDateString("pt-BR");
+    }
 </script>
 
 <Nav />
 <Background />
 
-{#if data && artist}
+{#if objectData && artist}
     <aside
         class="w-70 fixed bottom-0 left-0 top-0 z-20 mt-10 border-r border-t border-blue-400/50 bg-zinc-950/95 pt-4 capitalize text-white"
     >
@@ -56,23 +65,27 @@
         >
             Pesquisas recentes
         </h1>
+
+        {data.search}
     </aside>
     <main class="h-screen w-full pt-10 text-white">
         <section class="ml-70 h-90 flex pt-20">
             <div class="pl-40">
                 <img
-                    src={data.album.images[0].url}
+                    src={objectData.album.images[0].url}
                     alt=""
                     class="aspect-square size-60 blur-md animate-pulse"
                 />
                 <img
-                    src={data.album.images[0].url}
+                    src={objectData.album.images[0].url}
                     alt=""
                     class="relative -mt-60 aspect-square size-60 shadow-2xl shadow-black/20"
                 />
             </div>
             <div class="text-shadow-xs text-shadow-black pl-10 pt-24">
-                <h5 class="text-2xl"><a href="/album/{data.album.id}">{data.album.name}</a></h5>
+                <h5 class="text-2xl">
+                    <a href="/album/{objectData.album.id}">{objectData.album.name}</a>
+                </h5>
                 <div class="mt-3 flex gap-2">
                     <img
                         src={artist.images[0].url}
@@ -80,13 +93,13 @@
                         alt=""
                     />
                     <h4 class="inline-block text-2xl font-semibold">
-                        {data.artists[0].name} -
+                        {objectData.artists[0].name} -
                         <span class="text-xl opacity-60"
-                            >{data.album.release_date}</span
+                            >{formataData(objectData.album.release_date)}</span
                         >
                     </h4>
                 </div>
-                <h1 class="text-5xl font-bold">{data.name}</h1>
+                <h1 class="text-5xl font-bold">{objectData.name}</h1>
                 <div
                     class="absolute right-40 gap-2 -mt-5 flex items-center justify-center"
                 >
@@ -132,13 +145,13 @@
                                 href="/album/{album.id}"
                             >
                                 <img
-                                    src={album.images[0].url}
+                                    src={album.images[1].url}
                                     alt="imagem do album"
                                     class="min-h-40 min-w-40"
                                 />
                                 <h5 class="text-sm">{album.name}</h5>
                                 <p class="text-xs opacity-50">
-                                    {album.release_date}
+                                    {formataData(album.release_date)}
                                 </p>
                             </a>
                         {/each}

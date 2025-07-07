@@ -51,6 +51,11 @@
             timeZone: "UTC",
         });
     }
+
+    function formataData(data) {
+        const dataObj = new Date(data);
+        return dataObj.toLocaleDateString("pt-BR");
+    }
 </script>
 
 <Nav />
@@ -117,7 +122,9 @@
         </section>
         <section class="ml-70">
             <h3 class="text-xl mb-5 ml-40">Músicas</h3>
-            <table class="w-[80%] ml-40 bg-gray-900 shadow-xl shadow-black/20 table-auto rounded">
+            <table
+                class="w-[80%] ml-40 bg-gray-900 shadow-xl shadow-black/20 table-auto rounded"
+            >
                 <thead class="border border-blue-400">
                     <tr
                         class="*:border-blue-400/40 *:border *:px-1.5 text-sm text-white/90 text-semibol bg-gray-950/10"
@@ -134,13 +141,27 @@
                         <tr
                             class="*:border-blue-400/15 *:border *:px-1.5 hover:bg-white/10"
                         >
-                            <td>{track.track_number}</td>
-                            <td><a href="/musica/{track.id}" class="hover:underline cursor-pointer">{track.name}</a></td>
+                            <td class="text-center">{track.track_number}</td>
+                            <td
+                                ><a
+                                    href="/musica/{track.id}"
+                                    class="hover:underline cursor-pointer"
+                                    >{track.name}</a
+                                ></td
+                            >
                             <td class="text-center"
                                 >{setDuration(track.duration_ms)}</td
                             >
                             <td class="text-center">{track.disc_number}</td>
-                            <td class="text-center"><a href={track.external_urls.href}><img src="https://logospng.org/download/spotify/logo-spotify-icon-4096.png" alt="Link para a musica do spotify" class="max-h-2"></a></td>
+                            <td class="text-center"
+                                ><a href={track.external_urls.href}
+                                    ><img
+                                        src="https://logospng.org/download/spotify/logo-spotify-icon-4096.png"
+                                        alt="Link para a musica do spotify"
+                                        class="max-h-2"
+                                    /></a
+                                ></td
+                            >
                         </tr>
                     {/each}
                 </tbody>
@@ -165,20 +186,20 @@
 
                 <div class="mt-5">
                     <h4 class="text-xl mb-5">Álbuns</h4>
-                    <div class="flex gap-2 overflow-x-auto max-w-8xl">
+                    <div class="flex gap-2 overflow-x-auto max-w-8xl shadow-2xl/50">
                         {#each albuns.items as album}
                             <a
                                 class="flex flex-col bg-black/40 hover:bg-black/50 p-3 rounded-sm shadow-2xl/10 shadow-white duration-75"
                                 href="/album/{album.id}"
                             >
                                 <img
-                                    src={album.images[0].url}
+                                    src={album.images[1].url}
                                     alt="imagem do album"
                                     class="min-h-40 min-w-40"
                                 />
                                 <h5 class="text-sm">{album.name}</h5>
                                 <p class="text-xs opacity-50">
-                                    {album.release_date}
+                                    {formataData(album.release_date)}
                                 </p>
                             </a>
                         {/each}
