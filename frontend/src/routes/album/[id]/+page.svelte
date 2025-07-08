@@ -123,7 +123,7 @@
         <section class="ml-70">
             <h3 class="text-xl mb-5 ml-40">Músicas</h3>
             <table
-                class="w-[80%] ml-40 bg-gray-900 shadow-xl shadow-black/20 table-auto rounded"
+                class="w-[80%] ml-40 bg-gray-900 shadow/20 table-auto rounded border border-blue-400/40"
             >
                 <thead class="border border-blue-400">
                     <tr
@@ -154,13 +154,13 @@
                             >
                             <td class="text-center">{track.disc_number}</td>
                             <td class="text-center"
-                                ><a href={track.external_urls.href}
-                                    ><img
-                                        src="https://logospng.org/download/spotify/logo-spotify-icon-4096.png"
-                                        alt="Link para a musica do spotify"
-                                        class="max-h-2"
-                                    /></a
-                                ></td
+                                ><a
+                                    href={track.external_urls.spotify}
+                                    target="_blank"
+                                    class="cursor-pointer text-center size-5 border border-green-400/50 px-3 rounded-full hover:bg-green-400 duration-100 transition-colors text-shadow-2xs text-shadow-black/50"
+                                >
+                                    Ouvir
+                                </a></td
                             >
                         </tr>
                     {/each}
@@ -186,7 +186,9 @@
 
                 <div class="mt-5">
                     <h4 class="text-xl mb-5">Álbuns</h4>
-                    <div class="flex gap-2 overflow-x-auto max-w-8xl shadow-2xl/50">
+                    <div
+                        class="flex gap-2 overflow-x-auto max-w-8xl shadow-2xl/50"
+                    >
                         {#each albuns.items as album}
                             <a
                                 class="flex flex-col bg-black/40 hover:bg-black/50 p-3 rounded-sm shadow-2xl/10 shadow-white duration-75"
