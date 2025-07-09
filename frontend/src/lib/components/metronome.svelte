@@ -5,6 +5,7 @@
 	import Close from '$lib/svg/Close.svelte';
 	import click from '$lib/audio/click.mp3';
 	import FlashMessages from './FlashMessages.svelte';
+    import Dots from '$lib/svg/dots.svelte';
 
 	function tocarAudio() {
 		const audio = new Audio(click);
@@ -95,6 +96,7 @@
 	</div>
 
 	<div>
+		<Dots />
 		<div class="rounded mx-auto mb-10 h-96 w-1 bg-blue-400" id="pointer" {style}></div>
 	</div>
 

@@ -70,7 +70,7 @@
 					compasso={song.compasso}
 				/>
 				{/each}
-				<button class="text-lg text-white border border-white/50 w-full h-13 rounded mt-1 hover:bg-white/10 cursor-pointer flex justify-center items-center active:bg-gray-300/50"><span class="text-4xl -mt-2 mr-2">&plus;</span><p>Adicionar a playlist</p></button>
+				<button class="text-lg text-white border border-white/50 w-full h-12 rounded mt-1 hover:bg-white/10 cursor-pointer flex justify-center items-center active:bg-gray-300/50"><span class="text-4xl -mt-2 mr-2">&plus;</span><p>Adicionar a playlist</p></button>
 			</section>
 		{/if}
 	</div>
