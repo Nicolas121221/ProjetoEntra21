@@ -77,12 +77,14 @@
 			>
 				<Close />
 			</button>
+
+			&
 		</div>
 
 		<menu class="mt-5 flex h-[80%] flex-col items-center justify-center gap-6">
 			<MenuButton title="Home" href="/" target="_self" />
 			<MenuButton title="Playlists" href="/playlist" target="_self" />
-			<MenuButton title="Configuração" href="/config" target="_self" />
+			<MenuButton title="Configurações" href="/config" target="_self" />
 			<MenuButton title="Saiba Mais" href="https://github.com/Nicolas121221/ProjetoEntra21"  target="_blank" />
 		</menu>
 	</div>

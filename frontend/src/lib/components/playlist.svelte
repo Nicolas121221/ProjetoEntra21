@@ -21,7 +21,7 @@
 		<h2
 			class="mx-auto text-center text-xl text-white duration-100"
 		>
-			Playlists
+			Playlist
 		</h2>
 		<button onclick={(none = !none)}>
 			<Settings />
@@ -33,7 +33,7 @@
 			<ul
 				class="text-bold flex select-none items-center justify-between gap-1 text-xs text-gray-400 mr-[17px]"
 			>
-				<li class="w-10 border-r-2 border-r-zinc-900 text-center">N°</li>
+				<li class="w-10 border-r-2 border-r-zinc-900 text-center pl-1">N°</li>
 				<li class="w-[40%] border-r-2 border-r-zinc-900">Música</li>
 				<li class="w-[7.5%] border-r-2 border-r-zinc-900 text-center">Bpm</li>
 				<li class="w-[7.5%] border-r-2 border-r-zinc-900 text-center">Tom</li>
@@ -70,7 +70,7 @@
 					compasso={song.compasso}
 				/>
 				{/each}
-				<button class="text-lg text-white border border-white/50 w-full h-12 rounded mt-1 hover:bg-white/10 cursor-pointer flex justify-center items-center active:bg-gray-300/50"><span class="text-4xl -mt-2 mr-2">&plus;</span><p>Adicionar a playlist</p></button>
+				<button class="text-lg text-white border border-white/50 w-full h-12 rounded mt-1 hover:bg-white/10 cursor-pointer flex justify-center items-center active:bg-gray-300/50"><span class="text-4xl -mt-2 mr-2">&plus;</span><p>Adicionar à playlist</p></button>
 			</section>
 		{/if}
 	</div>
@@ -99,14 +99,14 @@
 
 <style>
 	::-webkit-scrollbar {
-		width: 7px;
+		width: 17px;
 	}
 
 	::-webkit-scrollbar-track {
-		background: #74747452;
+		background: #74747400;
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: #bbbbbb8e;
+		background: #bbbbbb64;
 	}
 </style>

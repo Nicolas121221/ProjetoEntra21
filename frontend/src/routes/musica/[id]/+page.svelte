@@ -172,22 +172,9 @@
                     /></a
                 >
             </h3>
-            <pre class="ml-30">
-				{#if chords.length >= 1}
-                    {#each chords as part}
-                        <pre>{@html part.title}</pre>
-						<pre>{@html part.content}</pre>
-                    {/each}
-                {:else if chords.length === 0}
-                    <p>Nenhuma cifra encontrada</p>
-                {:else}
-                    <section
-                        class="mx-auto flex h-full items-center justify-center">
-                    <div
-                            class="mx-auto size-7 animate-spin rounded-full border-2 border-white/30 border-b-blue-700"></div>
-                    <p class="text-center text-2xl text-white">Carregando</p>
-                </section>
-                {/if}
+            <pre class="ml-30 mt-30 flex">
+                        <pre class="mr-50">{@html chords.letras}</pre>
+						<div class="flex ml-50 flex-col">{@html chords.tablaturas}</div>
 			</pre>
         </section>
     </main>

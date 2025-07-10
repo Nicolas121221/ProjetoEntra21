@@ -16,6 +16,17 @@
         }
     }
 
+    let minutes = $state(1);
+    let seconds = $state(1);
+
+    function formataTempo(num) {
+        let value = num;
+        if (!num) value = 0;
+        if (num > 59) value = 59;
+        if (num < 0) value = 0;
+        return (num = value);
+    }
+
     let {
         num,
         musica,
@@ -51,24 +62,24 @@
         });
     }
 
-    let response = $state();
+    let chords = $state();
 
     async function getChords() {
         try {
             if (!musica || !artista)
-                return (response = "Sem informações para buscar a cifra");
+                return (chords = "Sem informações para buscar a cifra");
 
             let data = await fetch(
                 `http://localhost:3000/cifra/${artista}/${musica}`
             );
             if (data) {
-                return (response = await data.json());
+                return (chords = await data.json());
             } else {
-                return (response = "Não foi possível encontrar a cifra");
+                return (chords = "Não foi possível encontrar a cifra");
             }
         } catch (error) {
             console.error(error);
-            return (response = "Nenhuma Cifra encontrada");
+            return (chords = "Nenhuma Cifra encontrada");
         }
     }
 
@@ -140,7 +151,7 @@
     <div class="flex h-full w-[13%] items-center justify-evenly text-lg">
         <button
             onclick={() => {
-                if (!response) getChords();
+                if (!chords) getChords();
                 chevron = !chevron;
             }}
             class="{chevron ? 'rotate-z-90' : 'rotate-0'} duration-75"
@@ -160,18 +171,16 @@
         ? 'h-[75vh]'
         : 'h-0'} w-full bg-zinc-700/90 transition-all duration-300"
 >
-    {#if response}
+    {#if chords}
         <section
             class="font-ligth h-[75vh] w-full flex flex-col overflow-y-scroll p-5 font-mono text-sm text-white {!chevron
                 ? 'hidden'
                 : ''} "
         >
-            {#each response as res}
-                <article>
-                    <h6>[{@html res.title}]</h6>
-                    <pre>{@html res.content}</pre>
-                </article>
-            {/each}
+            <pre class="flex">
+             <div>{@html chords.letras}</div>
+			<div class="flex ml-50 gap-10 flex-col">{@html chords.tablaturas}</div>
+		</pre>
         </section>
     {:else}
         <section class="mx-auto pt-20 {!chevron ? 'hidden' : ''} ">
@@ -274,14 +283,23 @@
                 <div>
                     <label for="duracao">Duração: </label><br />
                     <input
-                        class="rounded-xs w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
-                        type="time"
-                        id="duration"
-                        name="duracao"
-                        bind:value={duracao}
-                        min="00:00"
-                        max="59:59"
-                        onchange={mmssToMilliseconds(duracao)}
+                        type="number"
+                        max="60"
+                        min="0"
+                        placeholder="0"
+                        class="rounded-xs w-[38%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+                        onchange={formataTempo(minutes)}
+                        bind:value={minutes}
+                    />
+                    :
+                    <input
+                        type="number"
+                        max="59"
+                        min="0"
+                        placeholder="0"
+                        class="rounded-xs w-[38%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
+                        onchange={formataTempo(seconds)}
+                        bind:value={seconds}
                     />
                 </div>
                 <div>
@@ -353,3 +371,17 @@
         </div>
     </section>
 {/if}
+
+<style>
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #74747400;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #bbbbbb59;
+    }
+</style>
