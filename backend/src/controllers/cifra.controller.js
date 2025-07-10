@@ -1,6 +1,17 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 
+function formataNome(nome) {
+  return nome
+  .split("-")[0]                           
+  .replace(/\b(a)\b/gi, "")                
+  .replace(/\s+/g, "-")                    
+  .replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚçÇ-]/g, "")
+  .replace(/-+/g, "-")                     
+  .replace(/^-|-$/g, "")                   
+  .toLowerCase();   
+}
+
 export const getCifra = async (req, res) => {
   try {
     let { artist, song } = req.params;
@@ -9,70 +20,39 @@ export const getCifra = async (req, res) => {
       return res.status(400).send("Sem dados do artista ou da música.");
     }
 
-    artist = artist
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚçÇ-]/g, "")
-      .toLowerCase();
+    artist = formataNome(artist);
+    song = formataNome(song);
 
-    song = song
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace("-a-", "-")
-      .replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚçÇ-]/g, "")
-      .toLowerCase();
+    const url = `https://www.cifraclub.com.br/${artist}/${song}/`;
 
-    const url = `https://www.cifraclub.com.br/${artist}/${song}/#columns=true`;
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
-    const cifra = [];
+    const pre = $(".cifra-mono pre").first();
 
-    $(".cifra-mono pre").each((_, element) => {
-      const el = $(element).html();
-      cifra.push(el)
+    const tablaturas = [];
+    const letras = [];
+
+    pre.contents().each((_, elem) => {
+
+      const el = $(elem);
+
+      if (el.hasClass && el.hasClass("tablatura")) {
+        tablaturas.push($.html(el));
+      } else {
+
+        letras.push($.html(elem) || elem.data || "");
+      }
     });
 
-    const rawText = cifra.join("\n");
+    return res.status(200).json({
+      tablaturas: tablaturas.join("\n"),
+      letras: letras.join("").trim()
+    });
 
-    const regex = /\[(.*?)\]/g;
-
-    const sections = [];
-    let match;
-    let lastIndex = 0;
-    let lastTitle = "Intro"; 
-
-    while ((match = regex.exec(rawText)) !== null) {
-      const currentTitle = match[1].trim(); 
-      const start = match.index;
-
-      if (start > lastIndex) {
-        const sectionText = rawText.slice(lastIndex, start).trim();
-        if (sectionText) {
-          sections.push({
-            title: lastTitle,
-            content: sectionText,
-          });
-        }
-      }
-
-      lastTitle = currentTitle;
-      lastIndex = regex.lastIndex;
-    }
-
-    const finalContent = rawText.slice(lastIndex).trim();
-    if (finalContent) {
-      sections.push({
-        title: lastTitle,
-        content: finalContent,
-      });
-    }
-
-
-    return res.status(200).json(sections);
   } catch (error) {
-    console.error("Erro ao buscar a página:", error.message);
+    console.error("Erro ao buscar a cifra:", error.message);
     return res.status(500).send("Erro ao buscar cifra.");
   }
 };
-
+console.log(formataNome('About A Girl - Live'))
