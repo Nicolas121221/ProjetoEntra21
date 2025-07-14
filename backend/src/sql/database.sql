@@ -1,87 +1,90 @@
-CREATE DATABASE projeto_entra21;
-USE projeto_entra21;
+CREATE DATABASE rhythm;
+USE rhythm;
 
-CREATE TABLE `musicas` (
+CREATE TABLE `songs` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `numero_faixa` int NOT NULL,
-  `nome` varchar(255) NOT NULL,
+  `position` int NOT NULL,
+  `name` varchar(255) NOT NULL,
   `bpm` int NOT NULL,
-  `compasso` varchar(10) NOT NULL DEFAULT '4/4',
-  `duracao` int NOT NULL,
-  `cifra` longtext,
-  `afinacao` varchar(255),
-  `tom_id` int NOT NULL,
+  `measure ` varchar(10) NOT NULL DEFAULT '4/4',
+  `duration_ms` int NOT NULL,
+  `chords` JSON,
+  `tuning` varchar(255),
+  `key` varchar(4) DEFAULT `C`,
   `album_id` int NOT NULL
 );
 
-CREATE TABLE `tons` (
+CREATE TABLE `playlist_song` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `tom` varchar(20) UNIQUE NOT NULL
-);
-
-CREATE TABLE `playlist_musica` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `musica_id` int NOT NULL,
+  `song_id` int NOT NULL,
   `playlist_id` int NOT NULL,
-  `adicionado_em` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP)
+  `created_at` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
 CREATE TABLE `playlists` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `data_criacao` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-  `usuario_id` int NOT NULL
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+  `user_id` int NOT NULL
+);
+
+CREATE TABLE `search`(
+ `id` int PRIMARY KEY AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `album` varchar(255) NOT NULL,
+ `artist` varchar(255) NOT NULL,
+ `href` varchar(255) NOT NULL,
+ `user_id` int NOT NULL
 );
 
 CREATE TABLE `albuns` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `cover_url` varchar(255),
-  `lancado_em` date NOT NULL,
-  `artistas_id` int NOT NULL
+  `name` varchar(255) NOT NULL,
+  `href` varchar(255),
+  `release_date` date NOT NULL,
+  `artists_id` int NOT NULL
 );
 
-CREATE TABLE `album_artistas` (
+CREATE TABLE `album_artists` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `album_id` int NOT NULL,
-  `artista_id` int NOT NULL
+  `artists_id` int NOT NULL
 );
 
-CREATE TABLE `artistas` (
+CREATE TABLE `artists` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `foto_url` varchar(255)
+  `name` varchar(255) NOT NULL,
+  `href` varchar(255)
 );
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `users` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `email` varchar(255) UNIQUE NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  `criado_em` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP)
+  `password` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
 CREATE TABLE `spotify_user` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `usuario_id` int UNIQUE NOT NULL,
-  `spotify_user` varchar(255) UNIQUE,
   `access_token` varchar(255) UNIQUE,
   `refresh_token` varchar(255) UNIQUE,
   `token_expires_at` datetime,
-  `criado_em` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP)
+  `user_id` int UNIQUE NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
-ALTER TABLE `playlist_musica` ADD FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`id`);
+ALTER TABLE `playlist_song` ADD FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`id`);
 
-ALTER TABLE `playlists` ADD FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+ALTER TABLE `playlists` ADD FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `playlist_musica` ADD FOREIGN KEY (`musica_id`) REFERENCES `musicas` (`id`);
+ALTER TABLE `playlist_song` ADD FOREIGN KEY (`songs_id`) REFERENCES `songs` (`id`);
 
-ALTER TABLE `musicas` ADD FOREIGN KEY (`tom_id`) REFERENCES `tons` (`id`);
+ALTER TABLE `songs` ADD FOREIGN KEY (`tom_id`) REFERENCES `tons` (`id`);
 
-ALTER TABLE `musicas` ADD FOREIGN KEY (`album_id`) REFERENCES `albuns` (`id`);
+ALTER TABLE `songs` ADD FOREIGN KEY (`album_id`) REFERENCES `albuns` (`id`);
 
-ALTER TABLE `spotify_user` ADD FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+ALTER TABLE `spotify_user` ADD FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `album_artistas` ADD FOREIGN KEY (`artista_id`) REFERENCES `artistas` (`id`);
+ALTER TABLE `album_artists` ADD FOREIGN KEY (`artista_id`) REFERENCES `artists` (`id`);
 
-ALTER TABLE `album_artistas` ADD FOREIGN KEY (`album_id`) REFERENCES `albuns` (`id`);
+ALTER TABLE `album_artists` ADD FOREIGN KEY (`album_id`) REFERENCES `albuns` (`id`);

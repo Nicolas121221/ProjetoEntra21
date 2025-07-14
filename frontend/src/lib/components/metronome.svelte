@@ -4,7 +4,6 @@
     import Player from "./Player.svelte";
     import Close from "$lib/svg/Close.svelte";
     import click from "$lib/audio/click.mp3";
-    import FlashMessages from "./FlashMessages.svelte";
     import Dots from "$lib/svg/dots.svelte";
 
     function tocarAudio() {

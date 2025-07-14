@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "a1c02216-25a8-40d9-afe2-1e9ff73eac0e",
+		"name": "Rhythm - Projeto Entra21",
+		"description": "## Sobre o projeto\n\nRhythm é um software criado pensando nas necessidades dos músicos, ele é um app que integra o spotify e o cifra club para auxiliar o usuário final a aprender a tocar qualquer música da sua escolha sendo possível editar, criar e alterar as funções do metrônomo dentro do sistema.\n\n### Integrantes\n\n- Nícolas Guedes - [Github](https://github.com/Nicolas121221/)\n    \n- Joana Maria Luz de Sa - [Github](https://github.com/joanabnu)\n    \n- Bryan Fernandes - [Github](https://github.com/BryanFernanDESdev)\n    \n\n### Repositório\n\nGithub: [link do projeto](https://github.com/Nicolas121221/ProjetoEntra21)\n\nLinktree: [LInk do linktree](https://linktr.ee/RhythmEntra21)\n\n---\n\n###### O projeto foi desenvolvido durante o curso do entra21 na turma de javascript durante o perído de 6 meses do curso colocando em prática todas as funcionalidades aprendidas ao longo da trajetória",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43166610"
+	},
+	"item": [
+		{
+			"name": "Artists",
+			"item": []
+		},
+		{
+			"name": "Albuns",
+			"item": []
+		},
+		{
+			"name": "Chords",
+			"item": []
+		},
+		{
+			"name": "Playlists",
+			"item": []
+		},
+		{
+			"name": "Songs",
+			"item": [
+				{
+					"name": "getSongs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/songs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# Table - Songs\n\nThis sections is refered as the table that stores the song data, providing some configurations such as measure, tuning and key about a song."
+		},
+		{
+			"name": "users",
+			"item": []
+		},
+		{
+			"name": "Search",
+			"item": []
+		},
+		{
+			"name": "spotify Users",
+			"item": []
+		},
+		{
+			"name": "Join Tables",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://localhost:3000",
+			"type": "string"
+		}
+	]
+}

@@ -1,15 +1,3 @@
-INSERT INTO tons (tom) VALUES
-('A'), ('Bb'), ('B'), ('C'), 
-('Db'), ('D'), ('Eb'), ('E'),
-('F'), ('F#'), ('G '), ('Ab'),
-('Am'), ('Bbm'), ('Bm'), ('Cm'), 
-('Dbm'), ('Dm'), ('Ebm'), ('Em'),
-('Fm'), ('F#m'), ('Gm'), ('Abm');
-
-SELECT `tons`.`id`,
-    `tons`.`tom`
-FROM `projeto_entra21`.`tons`;
-
 INSERT INTO artistas (nome, foto_url) VALUES 
 ('Nirvana', 'https://i.scdn.co/image/84282c28d851a700132356381fcfbadc67ff498b'),
 ('The Smiths', 'https://i.scdn.co/image/4bf08a9e6eea088b20d4092d1322bbd3f39ff9af');

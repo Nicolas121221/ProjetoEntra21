@@ -9,7 +9,6 @@ Este projeto foi desenvolvido como parte do programa Entra21. O objetivo é apri
 - **Nícolas Guedes**
 - **Bryan Fernandes**
 - **Joana Maria**
-- **Lucas Paulo da Silva Vieira França**
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -32,7 +31,7 @@ Este projeto foi desenvolvido como parte do programa Entra21. O objetivo é apri
  ┣ 📜 .env.example                   
  ┣ 📜 index.html              
  ┣ 📜 LICENSE                                     
- ┗ 📜 README.md               
+ ┗ 📜 README.md
 ```
 
 ## 📌 Como Executar o Projeto
@@ -43,19 +42,23 @@ Este projeto foi desenvolvido como parte do programa Entra21. O objetivo é apri
 git clone https://github.com/Nicolas121221/Projeto-Entra21.git
 ```
 
-2 - Acesse a pasta do projeto:
+2 - Acesse a pasta do backend e instale as dependências:
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+3 - Acesse a pasta do frontend e instale as dependências:
 
 ```bash
 cd frontend
-```
-
-3 - Instale as dependências.
-
-```bash
 npm install
+npm run dev
 ```
 
-4 - Inicíe o Svelte.
+4 - abra a url do frontend.
 
 ```bash
 npm run dev
