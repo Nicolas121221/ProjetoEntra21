@@ -5,7 +5,7 @@ import router from './routes/index.js'
 
 initialize()
 
-const port = process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT || 3006;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));

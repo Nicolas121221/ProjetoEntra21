@@ -8,26 +8,355 @@
 	},
 	"item": [
 		{
-			"name": "Artists",
-			"item": []
-		},
-		{
-			"name": "Albuns",
-			"item": []
-		},
-		{
-			"name": "Chords",
-			"item": []
-		},
-		{
-			"name": "Playlists",
-			"item": []
-		},
-		{
-			"name": "Songs",
+			"name": "/artists",
 			"item": [
 				{
-					"name": "getSongs",
+					"name": "Get Artists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/artists",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"artists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/artists/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"artists",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1.1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Artist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"a1\",\r\n    \"artist_image_url\": \"http://123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/artists",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"artists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Artist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/artists/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"artists",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Artist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/artists/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"artists",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes leading to the artists table in the database"
+		},
+		{
+			"name": "/albums",
+			"item": [
+				{
+					"name": "Get album",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/albums",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Album by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/albums/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"albums",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Album",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/albums",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Album",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/albums/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"albums",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Album",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/albums/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"albums",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes leading to the Albums table in the database"
+		},
+		{
+			"name": "/playlists",
+			"item": [
+				{
+					"name": "Get Playlists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/playlist",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Playlists By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/playlists/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"playlists",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/playlist",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Playlist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/playlists/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"playlists",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/playlists/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"playlists",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes leading to the playlists table in the database"
+		},
+		{
+			"name": "/songs",
+			"item": [
+				{
+					"name": "Get All Songs",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -42,25 +371,589 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Song By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/songs/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"songs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Song",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/songs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Song",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/songs/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"songs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove song",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/songs/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"songs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
-			"description": "# Table - Songs\n\nThis sections is refered as the table that stores the song data, providing some configurations such as measure, tuning and key about a song."
+			"description": "Routes leading to the Songs table in the database"
 		},
 		{
-			"name": "users",
-			"item": []
+			"name": "/users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes leading to the users table in the database"
 		},
 		{
-			"name": "Search",
-			"item": []
+			"name": "/userSearch",
+			"item": [
+				{
+					"name": "Get All User Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/userSearch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userSearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Search By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/userSearch/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userSearch",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User Search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/userSearch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userSearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User search",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/userSearch/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userSearch",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User Search",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/userSearch/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userSearch",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes leading to the User search history table in the database"
 		},
 		{
-			"name": "spotify Users",
-			"item": []
+			"name": "/spotifyUsers",
+			"item": [
+				{
+					"name": "Get All spotify Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/spotifyUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"spotifyUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get spotify User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/spotifyUser/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"spotifyUser",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Spotify User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/spotifyUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"spotifyUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Spotify User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/spotifyUser/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"spotifyUser",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Spotify User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/spotifyUser/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"spotifyUser",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes leading to the spotify User table in the database"
 		},
 		{
-			"name": "Join Tables",
-			"item": []
+			"name": "/keys",
+			"item": [
+				{
+					"name": "Get All Keys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/keys",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"keys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Key By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/keys/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"keys",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes leading to the keys table in the database"
+		},
+		{
+			"name": "/webscrapping",
+			"item": [
+				{
+					"name": "Get Chords",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/webscrapping/chords?artist=nirvana&song=breed",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"webscrapping",
+								"chords"
+							],
+							"query": [
+								{
+									"key": "artist",
+									"value": "nirvana"
+								},
+								{
+									"key": "song",
+									"value": "breed"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Song BPM",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/webscrapping/bpm?artist=nirvana&song=breed",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"webscrapping",
+								"bpm"
+							],
+							"query": [
+								{
+									"key": "artist",
+									"value": "nirvana"
+								},
+								{
+									"key": "song",
+									"value": "breed"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Routes that generates a webscrapping"
+		},
+		{
+			"name": "/measure",
+			"item": [
+				{
+					"name": "Get All Measures",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/measures",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"measures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Measure By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/measures/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"measures",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

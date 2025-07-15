@@ -1,4 +1,4 @@
-import { sequelize } from "../config/config.js"
+import { sequelize } from "../config/db.js"
 
 export const getPlaylist = async (req, res) => {
     try {
