@@ -1,5 +1,9 @@
 export default function (sequelize, DataTypes) {
   const User = sequelize.define("User", {
+    uuid:{
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     email: {
       type: DataTypes.STRING(255),
       unique: true,
@@ -9,6 +13,9 @@ export default function (sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: false,
     }
+  },{
+    createdAt: "created_at",
+    updatedAt: "updated_at"
   });
 
   User.associate = (models) => {

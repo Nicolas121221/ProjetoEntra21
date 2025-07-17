@@ -2,8 +2,8 @@ import { Router } from 'express';
 import keysRoutes from './keys.routes.js';
 import playlistRoutes from './playlists.routes.js'
 import artistsRoutes from './artists.routes.js'
-import usersRoutes from './usuarios.routes.js'
-import musicasRoutes from './musicas.routes.js'
+import usersRoutes from './users.routes.js'
+import songsRoutes from './songs.routes.js'
 import albumRoutes from './albuns.routes.js'
 import albumArtistaRoutes from './albumArtista.routes.js'
 import spotifyUserRoutes from './spotifyUser.routes.js'
@@ -17,12 +17,12 @@ const router = Router();
 router.use('/artists', artistsRoutes);
 router.use('/keys', keysRoutes);
 router.use('/measures', measureRoutes)
+router.use('/songs', songsRoutes)
 
+router.use('/users', usersRoutes)
 
 
 router.use('/playlist', playlistRoutes);
-router.use('/usuarios', usersRoutes)
-router.use('/musicas', musicasRoutes)
 router.use('/album', albumRoutes)
 router.use('/albumArtista', albumArtistaRoutes)
 router.use('/spotifyUser',spotifyUserRoutes)

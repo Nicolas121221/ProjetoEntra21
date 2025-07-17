@@ -12,10 +12,6 @@ export default function (sequelize, DataTypes) {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        measure: {
-            type: DataTypes.STRING(10),
-            defaultValue: '4/4'
-        },
         duration_ms: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -31,6 +27,9 @@ export default function (sequelize, DataTypes) {
         measure_id: DataTypes.INTEGER,
         key_id: DataTypes.INTEGER,
         album_id: DataTypes.INTEGER
+    },{
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
     });
 
     Song.associate = (models) => {

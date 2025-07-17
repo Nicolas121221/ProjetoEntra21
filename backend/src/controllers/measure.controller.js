@@ -2,7 +2,7 @@ import models from "../models/index.js";
 
 export const getAllMeaures = async (req, res) => {
   try {
-    const data = await models.Measure.findAll();
+    const data = await models.Measure.findAll({ order: [["id", "ASC"]] });
     if (data.length === 0) {
       return res;
     }
@@ -25,7 +25,8 @@ export const getMeasureById = async (req, res) => {
     }
 
     const data = await models.Measure.findOne({ where: { id } });
-    if (!data || data.length < 1) return res.status(200).send({ message: "No data found" });
+    if (!data || data.length < 1)
+      return res.status(200).send({ message: "No data found" });
 
     res.status(200).send(data);
   } catch (error) {
