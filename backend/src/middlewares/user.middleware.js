@@ -21,3 +21,22 @@ export const generatePasswordMiddleware = async (req, res, next) => {
     res.status(500).send({ message: "internal server error" });
   }
 };
+
+export const validateUser = async (req,res,next)=>{
+  try{
+    const { email, password } = req.body;
+
+    const DBemail = await models.User.findOne({where:{email}})
+
+    const isValid = await bcrypt.compare(password, DBemail.password)
+
+
+
+
+    req.body = { email, isValid };
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "internal server error" });
+  }
+};
