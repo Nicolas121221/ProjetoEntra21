@@ -55,4 +55,3 @@ export const getCifra = async (req, res) => {
     return res.status(500).send("Erro ao buscar cifra.");
   }
 };
-console.log(formataNome('About A Girl - Live'))

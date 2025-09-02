@@ -14,7 +14,7 @@
         }
         num++;
     }, 10000);
-    function enviaForm() {
+    function handleFormSubmit() {
         redirect(200, "/");
     }
 </script>
@@ -28,7 +28,9 @@
 <Background />
 
 <main class="flex h-screen w-screen items-center justify-center">
-    <section class="w-4xl mx-4 flex h-[600px] max-h-screen bg-zinc-900">
+    <section
+        class="w-4xl mx-4 flex h-[600px] max-h-screen bg-zinc-900 shadow-xl shadow-black/50"
+    >
         <section
             class="flex-2/6 block h-full bg-cover bg-center"
             style="background-image: url({src[num]});"

@@ -1,11 +1,9 @@
 <script>
-    import Settings from "$lib/svg/Settings.svelte";
     import Tempo from "$lib/components/Tempo.svelte";
     import Player from "./Player.svelte";
     import Close from "$lib/svg/Close.svelte";
     import click from "$lib/audio/click.mp3";
-    import FlashMessages from "./FlashMessages.svelte";
-    import Dots from "$lib/svg/dots.svelte";
+    import Dots from "$lib/svg/Dots.svelte";
 
     function tocarAudio() {
         const audio = new Audio(click);
@@ -79,9 +77,6 @@
 >
     <div class="flex">
         <h3 class="mx-auto text-center text-xl pl-6 text-white">Metrônomo</h3>
-        <button onclick={(none = !none)}>
-            <Settings />
-        </button>
     </div>
     <div class="flex-1/6">
         <h2 class="mt-4 text-center text-4xl font-thin text-white">
@@ -155,32 +150,6 @@
         <Player {functions} />
     </div>
 </section>
-
-<div
-    class="fixed inset-0 z-10 flex h-[100dvh] w-[100dvw] items-center justify-center bg-black/30 transition-opacity duration-300 {none
-        ? 'pointer-events-none opacity-0'
-        : 'opacity-100'}"
->
-    <div
-        class="w-2xl shadow-xs z-10 h-[450px] transform bg-zinc-950 p-1 shadow-blue-950 transition-all duration-300 {none
-            ? '-translate-y-20 opacity-0'
-            : 'translate-y-0 opacity-100'}"
-    >
-        <div class="flex items-center">
-            <h2
-                class="mx-auto text-center font-bold capitalize text-white hover:text-blue-500"
-            >
-                Metrônomo
-            </h2>
-            <button
-                onclick={() => (none = !none)}
-                class="-ml-8 inline h-8 w-8 text-right hover:bg-red-600"
-            >
-                <Close />
-            </button>
-        </div>
-    </div>
-</div>
 
 <style>
     #pointer {

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { page } from "$app/state";
     import Background from "$lib/components/Background.svelte";
     import Nav from "$lib/components/Nav.svelte";

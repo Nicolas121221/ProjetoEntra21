@@ -4,11 +4,11 @@
     import Elipsis from "$lib/svg/Elipsis.svelte";
     import { onMount } from "svelte";
 
-    let chevron = $state(false);
-    let close = $state(false);
+    let isOpened = $state(false);
+    let dropdownMenuIsOpened = $state(false);
 
     async function saveChanges() {
-        edit = false;
+        isEditing = false;
         try {
             const res = fetch();
         } catch (e) {
@@ -83,11 +83,11 @@
         }
     }
 
-    let edit = $state(false);
+    let isEditing = $state(false);
 </script>
 
 <div
-    class="h-13 shadow-xs mt-0.5 flex items-center justify-between gap-1 bg-zinc-700 text-white shadow-blue-600/20 {close
+    class="h-13 shadow-xs mt-0.5 flex items-center justify-between gap-1 bg-zinc-700 text-white shadow-blue-600/20 {dropdownMenuIsOpened
         ? 'hidden'
         : ''}"
     id="el"
@@ -152,28 +152,28 @@
         <button
             onclick={() => {
                 if (!chords) getChords();
-                chevron = !chevron;
+                isOpened = !isOpened;
             }}
-            class="{chevron ? 'rotate-z-90' : 'rotate-0'} duration-75"
+            class="{isOpened ? 'rotate-z-90' : 'rotate-0'} duration-75"
         >
             <Chevron />
         </button>
-        <button class="size-6" onclick={() => (close = !close)}>
+        <button class="size-6" onclick={() => (dropdownMenuIsOpened = !dropdownMenuIsOpened)}>
             <Close />
         </button>
-        <button onclick={() => (edit = !edit)}>
+        <button onclick={() => (isEditing = !isEditing)}>
             <Elipsis />
         </button>
     </div>
 </div>
 <div
-    class="{chevron
+    class="{isOpened
         ? 'h-[75vh]'
         : 'h-0'} w-full bg-zinc-700/90 transition-all duration-300"
 >
     {#if chords}
         <section
-            class="font-ligth h-[75vh] w-full flex flex-col overflow-y-scroll p-5 font-mono text-sm text-white {!chevron
+            class="font-ligth h-[75vh] w-full flex flex-col overflow-y-scroll p-5 font-mono text-sm text-white {!isOpened
                 ? 'hidden'
                 : ''} "
         >
@@ -183,7 +183,7 @@
 		</pre>
         </section>
     {:else}
-        <section class="mx-auto pt-20 {!chevron ? 'hidden' : ''} ">
+        <section class="mx-auto pt-20 {!isOpened ? 'hidden' : ''} ">
             <div
                 class="mx-auto size-7 animate-spin rounded-full border-2 border-white/30 border-b-blue-700"
             ></div>
@@ -192,7 +192,7 @@
     {/if}
 </div>
 
-{#if edit}
+{#if isEditing}
     <section
         class="fixed bottom-0 left-0 right-0 top-0 z-40 flex h-screen w-screen items-center justify-center bg-zinc-950/50"
     >
@@ -204,7 +204,7 @@
                     Editor
                 </h3>
                 <button
-                    onclick={() => (edit = !edit)}
+                    onclick={() => (isEditing = !isEditing)}
                     class="-ml-8 inline h-8 w-8 text-right hover:bg-red-600"
                 >
                     <Close />
@@ -223,25 +223,6 @@
                     />
                 </div>
 
-                <div>
-                    <label for="album">Album: </label><br />
-                    <input
-                        type="text"
-                        name="musica"
-                        bind:value={album}
-                        class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
-                    />
-                </div>
-
-                <div>
-                    <label for="artista">Artista: </label><br />
-                    <input
-                        type="text"
-                        name="musica"
-                        bind:value={artista}
-                        class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
-                    />
-                </div>
                 <div>
                     <label for="compasso">Compasso: </label><br />
                     <select
@@ -312,58 +293,43 @@
                     />
                 </div>
                 <div>
-                    <label for="data">Data de lançamento: </label><br />
-                    <input
-                        name="afinacao"
-                        type="date"
-                        bind:value={data}
-                        class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
-                    />
-                </div>
-                <div>
                     <label for="tom">Tom: </label><br />
                     <select
                         name="tom"
                         class="rounded-xs mt-1 w-[80%] border border-blue-400/80 bg-gray-950 py-1 pl-4 active:outline-none"
                         bind:value={tom}
                     >
-                        <option value="A">A</option>
-                        <option value="Bb">Bb</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="Db">Db</option>
-                        <option value="D">D</option>
-                        <option value="Eb">Eb</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
-                        <option value="F#">F#</option>
-                        <option value="G">G</option>
-                        <option value="Ab">Ab</option>
-                        <option value="Am">Am</option>
-                        <option value="Bbm">Bbm</option>
-                        <option value="Bm">Bm</option>
-                        <option value="Cm">Cm</option>
-                        <option value="Dbm">Dbm</option>
-                        <option value="Dm">Dm</option>
-                        <option value="Ebm">Ebm</option>
-                        <option value="Em">Em</option>
-                        <option value="Fm">Fm</option>
-                        <option value="F#m">F#m</option>
-                        <option value="Gm">Gm</option>
-                        <option value="Abm">Abm</option>
+                        <option>A</option>
+                        <option>Bb</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>Db</option>
+                        <option>D</option>
+                        <option>Eb</option>
+                        <option>E</option>
+                        <option>F</option>
+                        <option>F#</option>
+                        <option>G</option>
+                        <option>Ab</option>
+                        <option>Am</option>
+                        <option>Bbm</option>
+                        <option>Bm</option>
+                        <option>Cm</option>
+                        <option>Dbm</option>
+                        <option>Dm</option>
+                        <option>Ebm</option>
+                        <option>Em</option>
+                        <option>Fm</option>
+                        <option>F#m</option>
+                        <option>Gm</option>
+                        <option>Abm</option>
                     </select>
                 </div>
             </form>
             <button
-                class="mr-3 mt-20 inline-block cursor-pointer rounded-full border border-green-400 px-4 py-1 text-green-400 hover:bg-green-800"
-                onclick={saveChanges}
-            >
-                <p>Salvar alterações</p>
-            </button>
-            <button
-                class=" inline-block cursor-pointer rounded-full border border-red-400 px-4 py-1 text-red-400 hover:bg-red-800"
+                class=" inline relative bottom-4 right-4 cursor-pointer rounded-full border border-red-400 px-4 py-1 text-red-400 hover:bg-red-800"
                 onclick={() => {
-                    edit = !edit;
+                    isEditing = !isEditing;
                 }}
             >
                 <p>Sair</p>
